@@ -60,25 +60,51 @@ export default function Hero({ onNavigate, showToast, theme, toggleTheme }) {
       </div>
 
       {/* Top Left Reddish-Orange Dot Pattern Matrix */}
-      <div className="hero-dots-matrix" aria-hidden="true">
+      <div className="hero-dots-matrix hero-dots-top" aria-hidden="true">
         <svg width="140" height="140" viewBox="0 0 140 140" fill="none">
           <defs>
-            <radialGradient id="dotGlow" cx="50%" cy="50%" r="50%">
+            <radialGradient id="dotGlowTop" cx="50%" cy="50%" r="50%">
               <stop offset="0%" stopColor="#FF5722" stopOpacity="0.9" />
               <stop offset="100%" stopColor="#FF4A17" stopOpacity="0.4" />
             </radialGradient>
           </defs>
           {Array.from({ length: 9 }).map((_, row) =>
             Array.from({ length: 9 }).map((_, col) => {
-              // Diagonal clipped aesthetic similar to reference image
               if (row + col > 12) return null;
               return (
                 <circle
-                  key={`${row}-${col}`}
+                  key={`top-${row}-${col}`}
                   cx={12 + col * 14}
                   cy={12 + row * 14}
                   r="2.6"
-                  fill="url(#dotGlow)"
+                  fill="url(#dotGlowTop)"
+                  opacity={0.4 + (col * 0.06)}
+                />
+              );
+            })
+          )}
+        </svg>
+      </div>
+
+      {/* Lower Right Reddish-Orange Dot Pattern Matrix */}
+      <div className="hero-dots-matrix hero-dots-bottom" aria-hidden="true">
+        <svg width="140" height="140" viewBox="0 0 140 140" fill="none">
+          <defs>
+            <radialGradient id="dotGlowBottom" cx="50%" cy="50%" r="50%">
+              <stop offset="0%" stopColor="#FF5722" stopOpacity="0.9" />
+              <stop offset="100%" stopColor="#FF4A17" stopOpacity="0.4" />
+            </radialGradient>
+          </defs>
+          {Array.from({ length: 9 }).map((_, row) =>
+            Array.from({ length: 9 }).map((_, col) => {
+              if (row + col > 12) return null;
+              return (
+                <circle
+                  key={`bot-${row}-${col}`}
+                  cx={12 + col * 14}
+                  cy={12 + row * 14}
+                  r="2.6"
+                  fill="url(#dotGlowBottom)"
                   opacity={0.4 + (col * 0.06)}
                 />
               );
