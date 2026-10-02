@@ -27,11 +27,7 @@ function App() {
   }, [theme]);
 
   const toggleTheme = () => {
-    setTheme(prev => {
-      const nextTheme = prev === 'dark' ? 'light' : 'dark';
-      showToast(`Switched to ${nextTheme === 'dark' ? 'Dark' : 'Light'} Mode`);
-      return nextTheme;
-    });
+    setTheme(prev => (prev === 'dark' ? 'light' : 'dark'));
   };
 
   const showToast = (message) => {
