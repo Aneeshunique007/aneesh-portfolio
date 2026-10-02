@@ -61,16 +61,16 @@ export default function Hero({ onNavigate, showToast, theme, toggleTheme }) {
 
       {/* Top Left Reddish-Orange Dot Pattern Matrix */}
       <div className="hero-dots-matrix hero-dots-top" aria-hidden="true">
-        <svg width="140" height="140" viewBox="0 0 140 140" fill="none">
+        <svg width="208" height="208" viewBox="0 0 208 208" fill="none">
           <defs>
             <radialGradient id="dotGlowTop" cx="50%" cy="50%" r="50%">
               <stop offset="0%" stopColor="#FF5722" stopOpacity="0.9" />
               <stop offset="100%" stopColor="#FF4A17" stopOpacity="0.4" />
             </radialGradient>
           </defs>
-          {Array.from({ length: 9 }).map((_, row) =>
-            Array.from({ length: 9 }).map((_, col) => {
-              if (row + col > 12) return null;
+          {Array.from({ length: 14 }).map((_, row) =>
+            Array.from({ length: 14 }).map((_, col) => {
+              if (row + col > 19) return null;
               return (
                 <circle
                   key={`top-${row}-${col}`}
@@ -78,7 +78,7 @@ export default function Hero({ onNavigate, showToast, theme, toggleTheme }) {
                   cy={12 + row * 14}
                   r="2.6"
                   fill="url(#dotGlowTop)"
-                  opacity={0.4 + (col * 0.06)}
+                  opacity={0.35 + (col * 0.045)}
                 />
               );
             })
@@ -88,16 +88,16 @@ export default function Hero({ onNavigate, showToast, theme, toggleTheme }) {
 
       {/* Lower Right Reddish-Orange Dot Pattern Matrix */}
       <div className="hero-dots-matrix hero-dots-bottom" aria-hidden="true">
-        <svg width="140" height="140" viewBox="0 0 140 140" fill="none">
+        <svg width="208" height="208" viewBox="0 0 208 208" fill="none">
           <defs>
             <radialGradient id="dotGlowBottom" cx="50%" cy="50%" r="50%">
               <stop offset="0%" stopColor="#FF5722" stopOpacity="0.9" />
               <stop offset="100%" stopColor="#FF4A17" stopOpacity="0.4" />
             </radialGradient>
           </defs>
-          {Array.from({ length: 9 }).map((_, row) =>
-            Array.from({ length: 9 }).map((_, col) => {
-              if (row + col > 12) return null;
+          {Array.from({ length: 14 }).map((_, row) =>
+            Array.from({ length: 14 }).map((_, col) => {
+              if (row + col > 19) return null;
               return (
                 <circle
                   key={`bot-${row}-${col}`}
@@ -105,7 +105,7 @@ export default function Hero({ onNavigate, showToast, theme, toggleTheme }) {
                   cy={12 + row * 14}
                   r="2.6"
                   fill="url(#dotGlowBottom)"
-                  opacity={0.4 + (col * 0.06)}
+                  opacity={0.35 + (col * 0.045)}
                 />
               );
             })
@@ -145,11 +145,12 @@ export default function Hero({ onNavigate, showToast, theme, toggleTheme }) {
         </div>
 
         <h1 className="hero-main-title">
-          Hi ! I'm <span className="hero-accent-name">Aneesh U S.</span>
+          Hi ! I'm{' '}<br />
+          <span className="hero-accent-name">Aneesh U S.</span>
         </h1>
 
         <p className="hero-subtext">
-          AI Engineer & Data Scientist at Adam-i Innovations based in Trivandrum, India. Specializing in Generative AI, RAG Architectures & Full-Stack Systems.
+          AI Engineer & Data Scientist at Adam-i Innovations — a Japan-based company operating from Trivandrum, India. Specializing in Generative AI, RAG Architectures & Full-Stack Systems.
         </p>
 
         <div className="hero-actions">
@@ -158,16 +159,8 @@ export default function Hero({ onNavigate, showToast, theme, toggleTheme }) {
             onClick={(e) => { e.preventDefault(); handleLinkClick("#projects"); }}
             className="btn-primary hero-cta-btn"
           >
-            EXPLORE AI PROJECTS
+            EXPLORE PROJECTS
             <ArrowRight size={17} />
-          </a>
-          
-          <a 
-            href="#about" 
-            onClick={(e) => { e.preventDefault(); handleLinkClick("#about"); }}
-            className="btn-secondary hero-secondary-btn"
-          >
-            MORE ABOUT ME
           </a>
         </div>
       </div>
@@ -272,7 +265,7 @@ export default function Hero({ onNavigate, showToast, theme, toggleTheme }) {
           <div className="drawer-header">
             <div className="brand-logo">
               <span className="brand-dot"></span>
-              ANEESH U S<span>.AI</span>
+              ANEESH U S
             </div>
             <div className="drawer-header-actions">
               <ThemeToggle theme={theme} toggleTheme={toggleTheme} className="drawer-theme-toggle" />

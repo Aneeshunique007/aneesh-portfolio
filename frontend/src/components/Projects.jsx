@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ExternalLink, Eye, Layers, ArrowUpRight, X, CheckCircle, Sparkles } from 'lucide-react';
+import { ExternalLink, Layers, ArrowUpRight, X, CheckCircle, Sparkles } from 'lucide-react';
 import { GithubIcon } from './Icons';
 
 export default function Projects({ showToast }) {
@@ -213,11 +213,6 @@ export default function Projects({ showToast }) {
                   className="project-img" 
                   loading="lazy" 
                 />
-                <div className="project-image-overlay">
-                  <span className="view-details-pill">
-                    <Eye size={15} /> View Full Case Study
-                  </span>
-                </div>
               </div>
 
               {/* Card Content */}
@@ -241,14 +236,23 @@ export default function Projects({ showToast }) {
 
                 {/* Actions Footer */}
                 <div className="project-card-actions">
-                  <button 
-                    className="project-link-btn"
-                    onClick={(e) => handleOpenDemo(project, e)}
-                    title={project.demo.includes('github') ? "View on GitHub" : "Open Live Platform"}
-                  >
-                    <span>{project.demo.includes('github') ? "View Source" : "Live Platform"}</span>
-                    <ArrowUpRight size={16} />
-                  </button>
+                  <div className="project-card-actions-left">
+                    <button 
+                      className="project-link-btn"
+                      onClick={(e) => handleOpenDemo(project, e)}
+                      title={project.demo.includes('github') ? "View on GitHub" : "Open Live Platform"}
+                    >
+                      <span>{project.demo.includes('github') ? "View Source" : "Live Platform"}</span>
+                      <ArrowUpRight size={16} />
+                    </button>
+                    <button 
+                      className="project-case-study-btn"
+                      onClick={(e) => { e.stopPropagation(); setSelectedProject(project); }}
+                      title="View Full Case Study"
+                    >
+                      <span>Case Study</span>
+                    </button>
+                  </div>
                   <button 
                     className="project-icon-link"
                     onClick={(e) => handleOpenGithub(project, e)}

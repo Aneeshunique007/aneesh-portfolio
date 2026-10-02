@@ -45,7 +45,7 @@ export default function Navbar({ theme, toggleTheme }) {
           onClick={(e) => handleScrollTo(e, '#hero')}
         >
           <span className="brand-dot"></span>
-          ANEESH U S<span className="accent">.</span>
+          ANEESH U S
         </a>
 
         {/* Desktop Links */}

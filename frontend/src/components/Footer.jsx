@@ -13,7 +13,7 @@ export default function Footer() {
         <div className="footer-top-row">
           <div className="footer-brand">
             <span className="brand-dot"></span>
-            <span className="brand-text">ANEESH U S<span className="accent">.</span></span>
+            <span className="brand-text">ANEESH U S</span>
             <p className="footer-tagline">
               AI Engineer & Data Scientist at Adam-i Innovations • Engineering production Generative AI, computer vision, and scalable full-stack architectures.
             </p>
