@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { ArrowUpRight, Menu, X } from 'lucide-react';
+import ThemeToggle from './ThemeToggle';
 
-export default function Navbar() {
+export default function Navbar({ theme, toggleTheme }) {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
@@ -61,8 +62,10 @@ export default function Navbar() {
           ))}
         </nav>
 
-        {/* Quick Hire CTA */}
+        {/* Quick Hire CTA & Theme Toggle */}
         <div className="nav-right-actions">
+          <ThemeToggle theme={theme} toggleTheme={toggleTheme} className="sticky-theme-toggle" />
+
           <a
             href="#contact"
             onClick={(e) => handleScrollTo(e, '#contact')}
@@ -95,6 +98,10 @@ export default function Navbar() {
               {item.label}
             </a>
           ))}
+          <div className="mobile-menu-theme-row">
+            <span>Appearance</span>
+            <ThemeToggle theme={theme} toggleTheme={toggleTheme} className="mobile-theme-toggle" />
+          </div>
           <a
             href="#contact"
             onClick={(e) => handleScrollTo(e, '#contact')}

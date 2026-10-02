@@ -11,8 +11,28 @@ import { Sparkles, Check } from 'lucide-react';
 import './App.css';
 
 function App() {
+  const [theme, setTheme] = useState(() => {
+    const saved = localStorage.getItem('portfolio-theme');
+    if (saved === 'light' || saved === 'dark') return saved;
+    return window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+  });
+
   const [toastMessage, setToastMessage] = useState('');
   const [toastVisible, setToastVisible] = useState(false);
+
+  React.useEffect(() => {
+    document.documentElement.setAttribute('data-theme', theme);
+    document.body.setAttribute('data-theme', theme);
+    localStorage.setItem('portfolio-theme', theme);
+  }, [theme]);
+
+  const toggleTheme = () => {
+    setTheme(prev => {
+      const nextTheme = prev === 'dark' ? 'light' : 'dark';
+      showToast(`Switched to ${nextTheme === 'dark' ? 'Dark' : 'Light'} Mode`);
+      return nextTheme;
+    });
+  };
 
   const showToast = (message) => {
     setToastMessage(message);
@@ -23,13 +43,13 @@ function App() {
   };
 
   return (
-    <div className="portfolio-app">
+    <div className="portfolio-app" data-theme={theme}>
       {/* Floating Sticky Nav that appears on scroll */}
-      <Navbar />
+      <Navbar theme={theme} toggleTheme={toggleTheme} />
 
       <main>
         {/* Hero Section matching the reference layout */}
-        <Hero showToast={showToast} />
+        <Hero showToast={showToast} theme={theme} toggleTheme={toggleTheme} />
 
         {/* 01 // About Me */}
         <About showToast={showToast} />

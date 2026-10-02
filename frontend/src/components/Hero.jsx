@@ -11,8 +11,9 @@ import {
   Sparkles
 } from 'lucide-react';
 import { GithubIcon, LinkedinIcon, TwitterIcon, InstagramIcon, FacebookIcon } from './Icons';
+import ThemeToggle from './ThemeToggle';
 
-export default function Hero({ onNavigate, showToast }) {
+export default function Hero({ onNavigate, showToast, theme, toggleTheme }) {
   const [menuOpen, setMenuOpen] = useState(false);
   const [copiedEmail, setCopiedEmail] = useState(false);
 
@@ -86,24 +87,28 @@ export default function Hero({ onNavigate, showToast }) {
         </svg>
       </div>
 
-      {/* Top Right Minimalist Square Hamburger Button */}
+      {/* Top Right Actions: Theme Toggle & Minimalist Square Hamburger Button */}
       <nav className="hero-top-nav">
-        <button 
-          className={`hero-menu-btn ${menuOpen ? 'active' : ''}`}
-          onClick={() => setMenuOpen(!menuOpen)}
-          aria-label={menuOpen ? "Close navigation menu" : "Open navigation menu"}
-          aria-expanded={menuOpen}
-        >
-          {menuOpen ? (
-            <X size={24} color="#ffffff" strokeWidth={2} />
-          ) : (
-            <div className="hamburger-bars">
-              <span></span>
-              <span></span>
-              <span></span>
-            </div>
-          )}
-        </button>
+        <div className="hero-top-actions">
+          <ThemeToggle theme={theme} toggleTheme={toggleTheme} className="hero-theme-toggle" />
+          
+          <button 
+            className={`hero-menu-btn ${menuOpen ? 'active' : ''}`}
+            onClick={() => setMenuOpen(!menuOpen)}
+            aria-label={menuOpen ? "Close navigation menu" : "Open navigation menu"}
+            aria-expanded={menuOpen}
+          >
+            {menuOpen ? (
+              <X size={24} color="#ffffff" strokeWidth={2} />
+            ) : (
+              <div className="hamburger-bars">
+                <span></span>
+                <span></span>
+                <span></span>
+              </div>
+            )}
+          </button>
+        </div>
       </nav>
 
       {/* Hero Center Typography */}
@@ -243,13 +248,16 @@ export default function Hero({ onNavigate, showToast }) {
               <span className="brand-dot"></span>
               ANEESH U S<span>.AI</span>
             </div>
-            <button 
-              className="drawer-close-btn"
-              onClick={() => setMenuOpen(false)}
-              aria-label="Close menu"
-            >
-              <X size={26} />
-            </button>
+            <div className="drawer-header-actions">
+              <ThemeToggle theme={theme} toggleTheme={toggleTheme} className="drawer-theme-toggle" />
+              <button 
+                className="drawer-close-btn"
+                onClick={() => setMenuOpen(false)}
+                aria-label="Close menu"
+              >
+                <X size={26} />
+              </button>
+            </div>
           </div>
 
           <div className="drawer-body">
