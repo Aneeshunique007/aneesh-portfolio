@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { ArrowDownRight } from 'lucide-react';
 
 export default function EditorialBreather({
@@ -22,42 +22,53 @@ export default function EditorialBreather({
   ]
 }) {
   const containerRef = useRef(null);
-  const [scrollProgress, setScrollProgress] = useState(0.5);
+  const line1Ref = useRef(null);
+  const line2Ref = useRef(null);
 
   useEffect(() => {
-    let ticking = false;
+    let animationFrameId;
+
+    const updateTransforms = () => {
+      if (!containerRef.current || !line1Ref.current || !line2Ref.current) return;
+      const rect = containerRef.current.getBoundingClientRect();
+      const vh = window.innerHeight || document.documentElement.clientHeight;
+      
+      // Total travel distance from entering bottom to leaving top
+      const totalDist = vh + rect.height;
+      const currentPos = vh - rect.top;
+      const progress = Math.max(0, Math.min(1, currentPos / totalDist));
+
+      // Continuous single-direction pass-through:
+      // In dead center of viewport: progress = 0.5 -> normalized = 0.0 (exact center 0px)
+      // Entering from bottom (progress 0): normalized = -1.0
+      // Exiting through top (progress 1): normalized = +1.0
+      const normalized = Math.max(-1, Math.min(1, (progress - 0.5) * 2));
+
+      // Line 1: enters from left (-X) -> passes through center (0) -> continues to right (+X)
+      // Line 2: enters from right (+X) -> passes through center (0) -> continues to left (-X)
+      const maxDistance = 60;
+      const offset1 = normalized * maxDistance;
+      const offset2 = normalized * -maxDistance;
+
+      line1Ref.current.style.transform = `translate3d(${offset1.toFixed(1)}px, 0, 0)`;
+      line2Ref.current.style.transform = `translate3d(${offset2.toFixed(1)}px, 0, 0)`;
+    };
 
     const handleScroll = () => {
-      if (!ticking) {
-        window.requestAnimationFrame(() => {
-          if (containerRef.current) {
-            const rect = containerRef.current.getBoundingClientRect();
-            const windowHeight = window.innerHeight || document.documentElement.clientHeight;
-            
-            // Progress as the section travels through the viewport
-            const totalDist = windowHeight + rect.height;
-            const currentPos = windowHeight - rect.top;
-            const progress = Math.max(0, Math.min(1, currentPos / totalDist));
-            setScrollProgress(progress);
-          }
-          ticking = false;
-        });
-        ticking = true;
-      }
+      cancelAnimationFrame(animationFrameId);
+      animationFrameId = requestAnimationFrame(updateTransforms);
     };
 
     window.addEventListener('scroll', handleScroll, { passive: true });
-    handleScroll();
+    window.addEventListener('resize', handleScroll, { passive: true });
+    updateTransforms();
 
     return () => {
       window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('resize', handleScroll);
+      cancelAnimationFrame(animationFrameId);
     };
-  }, []);
-
-  // Controlled gliding offsets: slightly wider glide for giant mode
-  const glideRange = size === 'giant' ? 36 : 24;
-  const offset1 = Math.round((scrollProgress - 0.5) * -glideRange);
-  const offset2 = Math.round((scrollProgress - 0.5) * glideRange);
+  }, [size]);
 
   const handleScrollClick = (e) => {
     e.preventDefault();
@@ -84,14 +95,14 @@ export default function EditorialBreather({
         {/* Big Editorial Headline with Opposing Scroll Parallax */}
         <h2 className={`editorial-breather-headline ${size === 'giant' ? 'giant-breather-headline' : ''}`}>
           <span 
+            ref={line1Ref}
             className="breather-line-white breather-parallax-line"
-            style={{ transform: `translate3d(${offset1}px, 0, 0)` }}
           >
             {line1}
           </span>
           <span 
+            ref={line2Ref}
             className="breather-line-cyan breather-parallax-line"
-            style={{ transform: `translate3d(${offset2}px, 0, 0)` }}
           >
             {line2}
           </span>

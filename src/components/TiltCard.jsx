@@ -6,7 +6,6 @@ export default function TiltCard({ children, className = '', ...props }) {
     transform: 'perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)',
     transition: 'transform 0.4s cubic-bezier(0.16, 1, 0.3, 1)',
   });
-  const [glare, setGlare] = useState({ x: 50, y: 50, opacity: 0 });
 
   const handleMouseMove = (e) => {
     if (!cardRef.current) return;
@@ -17,18 +16,12 @@ export default function TiltCard({ children, className = '', ...props }) {
     const centerX = rect.width / 2;
     const centerY = rect.height / 2;
 
-    const rotateX = ((y - centerY) / centerY) * -7.5;
-    const rotateY = ((x - centerX) / centerX) * 7.5;
+    const rotateX = ((y - centerY) / centerY) * -6;
+    const rotateY = ((x - centerX) / centerX) * 6;
 
     setStyle({
-      transform: `perspective(1000px) rotateX(${rotateX.toFixed(2)}deg) rotateY(${rotateY.toFixed(2)}deg) scale3d(1.018, 1.018, 1.018)`,
+      transform: `perspective(1000px) rotateX(${rotateX.toFixed(2)}deg) rotateY(${rotateY.toFixed(2)}deg) scale3d(1.015, 1.015, 1.015)`,
       transition: 'transform 0.08s ease-out',
-    });
-
-    setGlare({
-      x: (x / rect.width) * 100,
-      y: (y / rect.height) * 100,
-      opacity: 0.22,
     });
   };
 
@@ -37,7 +30,6 @@ export default function TiltCard({ children, className = '', ...props }) {
       transform: 'perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)',
       transition: 'transform 0.5s cubic-bezier(0.16, 1, 0.3, 1)',
     });
-    setGlare((prev) => ({ ...prev, opacity: 0 }));
   };
 
   return (
@@ -50,13 +42,6 @@ export default function TiltCard({ children, className = '', ...props }) {
       {...props}
     >
       {children}
-      <div
-        className="tilt-glare-effect"
-        style={{
-          background: `radial-gradient(circle at ${glare.x}% ${glare.y}%, rgba(255, 255, 255, ${glare.opacity}) 0%, transparent 65%)`,
-        }}
-        aria-hidden="true"
-      />
     </div>
   );
 }

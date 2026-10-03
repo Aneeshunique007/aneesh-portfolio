@@ -81,8 +81,8 @@ function App() {
         {/* Interstitial Breather 2: Skills to Production Systems */}
         <EditorialBreather 
           statusBadge="VALIDATED ARCHITECTURES"
-          line1="SHIPPED TO PRODUCTION."
-          line2="BUILT FOR ENTERPRISE SCALE."
+          line1="SHIPPED SYSTEMS."
+          line2="PROVEN AT SCALE."
           ctaText="Explore Flagship Case Studies"
           targetId="#projects"
         />
@@ -93,8 +93,8 @@ function App() {
         {/* Interstitial Breather 3: Projects to Career Journey */}
         <EditorialBreather 
           statusBadge="CAREER VELOCITY"
-          line1="CHRONICLE OF IMPACT."
-          line2="CONSTANT ENGINEERING EVOLUTION."
+          line1="CAREER VELOCITY."
+          line2="CONSTANT EVOLUTION."
           ctaText="Inspect Career Journey"
           targetId="#experience"
         />

@@ -1,34 +1,53 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { ArrowUpRight } from 'lucide-react';
 
 export default function EditorialCTA({ onOpenContact }) {
   const sectionRef = useRef(null);
-  const [offset, setOffset] = useState(0);
+  const line1Ref = useRef(null);
+  const line2Ref = useRef(null);
 
   useEffect(() => {
-    let ticking = false;
+    let animationFrameId;
+
+    const updateTransforms = () => {
+      if (!sectionRef.current || !line1Ref.current || !line2Ref.current) return;
+      const rect = sectionRef.current.getBoundingClientRect();
+      const vh = window.innerHeight || document.documentElement.clientHeight;
+      
+      const totalDist = vh + rect.height;
+      const currentPos = vh - rect.top;
+      const progress = Math.max(0, Math.min(1, currentPos / totalDist));
+
+      // Continuous single-direction pass-through:
+      // In dead center of viewport: progress = 0.5 -> normalized = 0.0 (exact center 0px)
+      // Entering from bottom (progress 0): normalized = -1.0
+      // Exiting through top (progress 1): normalized = +1.0
+      const normalized = Math.max(-1, Math.min(1, (progress - 0.5) * 2));
+
+      // Line 1: enters from left (-60px) -> passes through center (0) -> continues to right (+60px)
+      // Line 2: enters from right (+60px) -> passes through center (0) -> continues to left (-60px)
+      const maxDistance = 60;
+      const offset1 = normalized * maxDistance;
+      const offset2 = normalized * -maxDistance;
+
+      line1Ref.current.style.transform = `translate3d(${offset1.toFixed(1)}px, 0, 0)`;
+      line2Ref.current.style.transform = `translate3d(${offset2.toFixed(1)}px, 0, 0)`;
+    };
 
     const handleScroll = () => {
-      if (!ticking) {
-        window.requestAnimationFrame(() => {
-          if (sectionRef.current) {
-            const rect = sectionRef.current.getBoundingClientRect();
-            const vh = window.innerHeight;
-            // Calculate progress from 0 (entering from bottom) to 1 (leaving top)
-            const progress = (vh - rect.top) / (vh + rect.height);
-            // Center around 0 (-1 to 1)
-            const centered = (progress - 0.5) * 2;
-            setOffset(centered);
-          }
-          ticking = false;
-        });
-        ticking = true;
-      }
+      cancelAnimationFrame(animationFrameId);
+      animationFrameId = requestAnimationFrame(updateTransforms);
     };
 
     window.addEventListener('scroll', handleScroll, { passive: true });
-    handleScroll();
-    return () => window.removeEventListener('scroll', handleScroll);
+    window.addEventListener('resize', handleScroll, { passive: true });
+    updateTransforms();
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('resize', handleScroll);
+      cancelAnimationFrame(animationFrameId);
+    };
   }, []);
 
   const handleClick = (e) => {
@@ -43,25 +62,21 @@ export default function EditorialCTA({ onOpenContact }) {
     }
   };
 
-  // Line 1 moves left, Line 2 moves right with safe bounds
-  const line1X = Math.round(offset * -24);
-  const line2X = Math.round(offset * 24);
-
   return (
     <section ref={sectionRef} className="editorial-cta-section">
       <div className="container editorial-cta-container">
         <h2 className="editorial-cta-headline">
           <span 
+            ref={line1Ref}
             className="cta-line-dark cta-parallax-line"
-            style={{ transform: `translate3d(${line1X}px, 0, 0)` }}
           >
             READY TO SCALE?
           </span>
           <span 
+            ref={line2Ref}
             className="cta-line-gold cta-parallax-line"
-            style={{ transform: `translate3d(${line2X}px, 0, 0)` }}
           >
-            LET'S ARCHITECT THE FUTURE.
+            LET'S ARCHITECT.
           </span>
         </h2>
 

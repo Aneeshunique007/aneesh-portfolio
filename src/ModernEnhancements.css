@@ -336,13 +336,7 @@
 }
 
 .tilt-glare-effect {
-  position: absolute;
-  inset: 0;
-  border-radius: inherit;
-  pointer-events: none;
-  z-index: 4;
-  mix-blend-mode: screen;
-  transition: opacity 0.2s ease;
+  display: none !important;
 }
 
 /* Responsive adjustments for mobile */
@@ -380,9 +374,13 @@
 
 /* 1. Introduction Section */
 .editorial-intro-section {
+  min-height: 80vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   background: transparent !important;
   color: var(--text-main) !important;
-  padding: 100px 0 90px;
+  padding: 130px 0 110px;
   position: relative;
   z-index: 2;
   border-bottom: 1px solid rgba(255, 255, 255, 0.08);
@@ -781,9 +779,13 @@
 
 /* 3. Editorial CTA Section */
 .editorial-cta-section {
+  min-height: 85vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   background: #000000 !important;
   color: var(--text-main) !important;
-  padding: 120px 0 140px;
+  padding: 140px 0;
   text-align: center;
   position: relative;
   z-index: 10;
@@ -805,10 +807,10 @@
 }
 
 .editorial-cta-headline {
-  font-size: clamp(2.2rem, 5.4vw, 5.2rem);
+  font-size: clamp(2.5rem, 6.2vw, 5.4rem);
   font-weight: 900;
-  line-height: 0.98;
-  letter-spacing: -0.04em;
+  line-height: 0.94;
+  letter-spacing: -0.045em;
   text-transform: uppercase;
   width: 100%;
   text-align: center;
@@ -1325,7 +1327,11 @@
    EDITORIAL BREATHER INTERSTITIALS (Cinematic transition breaks between sections)
    ========================================================================== */
 .editorial-breather-section {
-  padding: 110px 0;
+  min-height: 85vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 140px 0;
   position: relative;
   overflow: hidden;
   text-align: center;
@@ -1392,10 +1398,10 @@
 }
 
 .editorial-breather-headline {
-  font-size: clamp(1.9rem, 4.6vw, 4.4rem);
+  font-size: clamp(2.5rem, 6.2vw, 5.4rem);
   font-weight: 900;
-  line-height: 0.98;
-  letter-spacing: -0.04em;
+  line-height: 0.94;
+  letter-spacing: -0.045em;
   text-transform: uppercase;
   margin: 0;
   width: 100%;
@@ -1403,14 +1409,14 @@
 }
 
 .giant-breather-section {
-  padding: 130px 0 110px;
+  padding: 120px 0 110px;
 }
 
 .giant-breather-headline {
-  font-size: clamp(3.2rem, 10.5vw, 8.2rem) !important;
+  font-size: clamp(2.5rem, 6.2vw, 5.4rem) !important;
   font-weight: 900 !important;
-  line-height: 0.90 !important;
-  letter-spacing: -0.05em !important;
+  line-height: 0.94 !important;
+  letter-spacing: -0.045em !important;
   text-transform: uppercase;
 }
 
@@ -1422,9 +1428,11 @@
 }
 
 @media (max-width: 768px) {
+  .editorial-breather-headline,
+  .editorial-cta-headline,
   .giant-breather-headline {
-    font-size: clamp(2.2rem, 11.5vw, 4.4rem) !important;
-    line-height: 0.94 !important;
+    font-size: clamp(1.6rem, 7.5vw, 2.8rem) !important;
+    line-height: 1.02 !important;
   }
 }
 
