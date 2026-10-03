@@ -1,5 +1,5 @@
 import React from 'react';
-import { Briefcase, Calendar, MapPin, Sparkles } from 'lucide-react';
+import { Calendar, MapPin, Sparkles } from 'lucide-react';
 
 export default function Experience() {
   const experiences = [
@@ -7,46 +7,64 @@ export default function Experience() {
       period: "2025 — Present",
       role: "AI Engineer / Data Scientist",
       company: "Adam-i Innovations",
-      location: "Tokyo, Japan / Trivandrum, India",
-      type: "Full-Time Tech",
-      description: "Spearheading engineering on production Generative AI platforms, multimodal document intelligence pipelines, and quantitative stock market prediction engines deployed on Microsoft Azure Container Apps.",
-      achievements: [
-        "Architected Masshou AutoDoc (masshouautodoc.jp), integrating Azure Document Intelligence OCR and Google Gemini 2.5 to extract and translate 41+ Japanese automotive fields in <15 seconds with >99% accuracy",
-        "Engineered iMarketPredict quantitative analytics platform using TensorFlow/Keras LSTM & GRU ensemble networks for multi-horizon price forecasting across 100+ Tokyo Stock Exchange equities",
-        "Developed decoupled microservices across React 18, TypeScript, Python FastAPI, Node.js GraphQL API gateway, MongoDB, and Python ReportLab vector PDF generation engines",
-        "Engineered Adam-i Talent Hub, building dual-engine MongoDB vector & Gemini 2.5 Pro matching, Levenshtein candidate deduplication, and automated background IMAP email JD ingestion",
-        "Developed in-browser AI Mock Interview Studio with Three.js 3D avatars, Google MediaPipe Tasks-Vision (iris gaze and posture tracking), and Azure Speech SDK"
-      ],
-      skills: ["Generative AI", "RAG", "Python", "FastAPI", "React 19", "TypeScript", "TensorFlow", "MediaPipe Vision", "Azure Speech", "Azure Container Apps"]
+      location: "Tokyo, Japan & Trivandrum, India",
+      type: "Current Role",
+      bullets: [
+        {
+          label: "Production AI Systems",
+          text: "Architecting and deploying enterprise Generative AI platforms, multimodal document intelligence pipelines, and quantitative deep learning forecasting models."
+        },
+        {
+          label: "Cloud & Microservice Infrastructure",
+          text: "Engineering decoupled microservices across React 19, TypeScript, Python FastAPI, and GraphQL gateways deployed on Microsoft Azure Container Apps."
+        },
+        {
+          label: "Enterprise Delivery & Governance",
+          text: "Leading end-to-end implementations with multi-tenant RBAC security, automated confidence auditing, and resilient cloud CI/CD pipelines."
+        }
+      ]
     },
     {
       period: "2024 — 2025",
-      role: "Full-Stack Development & Data Science Specialist",
-      company: "Faith InfoTech Academy, Technopark",
+      role: "Full-Stack & Data Science Specialist",
+      company: "Faith InfoTech Academy",
       location: "Technopark, Trivandrum, India",
-      type: "Technical Specialization",
-      description: "Intensive engineering specialization focused on advanced machine learning pipelines, Generative AI models, and scalable full-stack web applications.",
-      achievements: [
-        "Architected FaithAI: autonomous RAG platform pairing a Scrapy web crawler, Meta FAISS in-memory vector index (bge-small-en), and CPU-optimized TinyLlama-1.1B LLM (<1.8s response latency, zero cloud API fees, one-click self-healing sync)",
-        "Engineered CNN-based image classification system for apparel categorization in TensorFlow/Keras and FastAPI, achieving 85% accuracy and slashing manual tagging by 70%",
-        "Built real-time face recognition system using Python, OpenCV, and Django REST Framework with bounding box detection and player identification encodings",
-        "Mastered end-to-end data science pipelines: data wrangling with Pandas/NumPy, statistical analysis with SciPy, and visualization in Matplotlib/Seaborn"
-      ],
-      skills: ["Python", "TinyLlama", "RAG", "TensorFlow", "Keras", "OpenCV", "FastAPI", "Django REST Framework", "Scrapy"]
+      type: "Specialization",
+      bullets: [
+        {
+          label: "Machine Learning & Computer Vision",
+          text: "Engineered automated ML pipelines, CNN classification models, and real-time computer vision facial detection architectures."
+        },
+        {
+          label: "Autonomous Retrieval & RAG",
+          text: "Researched and built low-latency CPU-optimized RAG pipelines, dense vector indices, and automated web crawling ingestion systems."
+        },
+        {
+          label: "Statistical & Data Pipelines",
+          text: "Built high-throughput data processing workflows with Pandas, NumPy, and statistical hypothesis testing engines."
+        }
+      ]
     },
     {
       period: "2023 — 2024",
       role: "Full-Stack Technical Project Developer",
       company: "Independent Technical Innovations",
       location: "Trivandrum, India",
-      type: "Software Engineering",
-      description: "Architected end-to-end full-stack web platforms and specialized healthcare software systems.",
-      achievements: [
-        "Architected AniLearn 日本語, a full-stack Japanese learning web platform with dynamic study schedule algorithms, Web Speech API integration, and JLPT curriculum vault",
-        "Architected Clinical Management System (31,000+ LOC, 124 REST endpoints, 20 models): engineered 5-tier RBAC (Admin, Doctor, Receptionist, Lab Tech, Pharmacist), 10-minute collision-proof slot scheduling, ReportLab pathology PDF generation, and Hugging Face AI clinical proxy",
-        "Designed responsive frontends with real-time state synchronization, clean component architectures, and secure JWT authentication"
-      ],
-      skills: ["React.js", "Node.js", "Express", "MongoDB", "MySQL", "Django", "Tailwind CSS", "RESTful APIs"]
+      type: "Foundational",
+      bullets: [
+        {
+          label: "Enterprise Web Platforms",
+          text: "Engineered scalable healthcare workflow management systems with 5-tier RBAC, collision-proof slot scheduling, and ReportLab PDF engines."
+        },
+        {
+          label: "Frontend & API Architecture",
+          text: "Built responsive, high-performance web applications with modular component architecture, state management, and secure JWT authentication."
+        },
+        {
+          label: "Database Optimization",
+          text: "Designed normalized relational schemas and document stores (MySQL, MongoDB) optimized for query speed and transactional integrity."
+        }
+      ]
     }
   ];
 
@@ -56,9 +74,9 @@ export default function Experience() {
         {/* Header */}
         <div className="experience-header">
           <span className="section-tag">04 // JOURNEY</span>
-          <h2 className="section-title">Technical Experience & Engineering Career.</h2>
+          <h2 className="section-title">ENGINEERING CAREER &amp; MILESTONES.</h2>
           <p className="section-subtitle">
-            A focused record of developing production AI platforms, training deep learning models, and building scalable full-stack web architectures.
+            A focused track record of architecting production AI platforms, quantitative deep learning models, and scalable full-stack web systems.
           </p>
         </div>
 
@@ -79,10 +97,16 @@ export default function Experience() {
               <div className="timeline-card glass-panel">
                 <div className="timeline-card-header">
                   <div className="timeline-role-info">
-                    <span className="timeline-period-badge">
-                      <Calendar size={13} />
-                      {item.period}
-                    </span>
+                    <div className="timeline-meta-top">
+                      <span className="timeline-period-badge">
+                        <Calendar size={13} />
+                        {item.period}
+                      </span>
+                      <span className={`timeline-status-badge ${item.type === 'Current Role' ? 'status-active' : ''}`}>
+                        {item.type === 'Current Role' && <Sparkles size={11} />}
+                        {item.type}
+                      </span>
+                    </div>
                     <h3 className="timeline-role">{item.role}</h3>
                     <div className="timeline-company-row">
                       <span className="timeline-company">{item.company}</span>
@@ -92,23 +116,18 @@ export default function Experience() {
                       </span>
                     </div>
                   </div>
-                  <span className="timeline-type-pill">{item.type}</span>
                 </div>
 
-                <p className="timeline-desc">{item.description}</p>
-
-                <div className="timeline-achievements">
-                  {item.achievements.map((ach, aIdx) => (
-                    <div key={aIdx} className="achievement-row">
-                      <span className="ach-bullet">›</span>
-                      <span>{ach}</span>
+                {/* Executive Scope Bullets */}
+                <div className="timeline-scope-list">
+                  {item.bullets.map((bullet, bIdx) => (
+                    <div key={bIdx} className="timeline-scope-item">
+                      <span className="timeline-scope-bullet">›</span>
+                      <div className="timeline-scope-content">
+                        <strong className="timeline-scope-label">{bullet.label}:</strong>
+                        <span className="timeline-scope-text">{bullet.text}</span>
+                      </div>
                     </div>
-                  ))}
-                </div>
-
-                <div className="timeline-skills-list">
-                  {item.skills.map((skill) => (
-                    <span key={skill} className="timeline-skill-tag">{skill}</span>
                   ))}
                 </div>
               </div>

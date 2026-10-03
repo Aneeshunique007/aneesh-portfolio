@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
-import { ExternalLink, Layers, ArrowUpRight, X, CheckCircle, Sparkles } from 'lucide-react';
+import { ExternalLink, ArrowUpRight, X, CheckCircle, Sparkles } from 'lucide-react';
 import { GithubIcon } from './Icons';
+import TiltCard from './TiltCard';
 
 export default function Projects({ showToast }) {
-  const [activeFilter, setActiveFilter] = useState('all');
+  const [activeFilter, setActiveFilter] = useState('genai');
   const [selectedProject, setSelectedProject] = useState(null);
 
   const filterTabs = [
-    { id: 'all', label: 'All Projects' },
     { id: 'genai', label: 'GenAI & OCR' },
     { id: 'ml', label: 'Quantitative & ML' },
     { id: 'fullstack', label: 'Full-Stack Web' },
@@ -17,11 +17,11 @@ export default function Projects({ showToast }) {
     {
       id: 1,
       title: "Masshou AutoDoc",
-      subtitle: "AI-Powered Japanese Automotive Document Intelligence Platform",
+      subtitle: "AI Automotive Document Intelligence Platform",
       category: "genai",
       image: "/project-masshou.jpg",
       tags: ["React 18", "TypeScript", "FastAPI", "Node.js", "Azure Document Intelligence", "Gemini 2.5", "ReportLab", "Docker"],
-      summary: "An enterprise document intelligence SaaS that automates the extraction, translation, validation, and generation of official English certificates from Japanese vehicle export documents (Massho 輸出抹消仮登録証明書 & Shaken 自動車検査証).",
+      summary: "Enterprise document intelligence SaaS extracting and translating Japanese vehicle export certificates into official English MLIT documents in under 15 seconds.",
       metrics: "Automates 41+ fields with >99% accuracy; slashed translation time by 96% (40 mins down to <15s)",
       features: [
         "Hybrid AI Pipeline: Combines Azure Document Intelligence OCR with Google Gemini 2.5 for context-aware Japanese imperial era conversion and automotive taxonomy mapping",
@@ -36,17 +36,17 @@ export default function Projects({ showToast }) {
     {
       id: 2,
       title: "iMarketPredict",
-      subtitle: "Enterprise Tokyo Stock Exchange (TSE) Quantitative Analytics Platform",
+      subtitle: "Institutional Quantitative Analytics & Deep Learning Engine",
       category: "ml",
       image: "/project-imarket.png",
       tags: ["React 18", "TypeScript", "GraphQL", "FastAPI", "TensorFlow", "Keras", "LSTM / GRU", "Stripe", "Azure"],
-      summary: "An institutional-grade quantitative investment and stock prediction platform for the Tokyo Stock Exchange. Built with a decoupled microservice architecture combining deep learning ensemble models for multi-horizon price forecasting with a real-time data streaming engine.",
-      metrics: "Deep learning forecasting (1D to 12M) across 100+ TSE equities in 5 key economic sectors",
+      summary: "Institutional quantitative forecasting platform powered by LSTM/GRU deep learning ensembles and real-time streaming market data.",
+      metrics: "Deep learning multi-horizon forecasting (1D to 12M) across 100+ equity symbols in 5 key market sectors",
       features: [
         "Multi-Horizon Deep Learning: Sector-calibrated LSTM and GRU neural networks forecasting 1D, 5D, 20D, 3M, 6M, and 12M price windows",
-        "Institutional Portfolio Analytics: Real-time risk calculations including Sharpe Ratio, Alpha, Beta vs TOPIX/Nikkei, Maximum Drawdown, and Unrealized P&L",
-        "Zero-Database Streaming Engine: High-throughput FastAPI proxy streaming real-time and historical OHLCV data from Yahoo Finance with zero persistent storage overhead",
-        "Bilingual Localization (i18n): Native Japanese and English interface optimized for Tokyo financial market terminology",
+        "Institutional Portfolio Analytics: Real-time risk calculations including Sharpe Ratio, Alpha, Beta vs global benchmarks, Maximum Drawdown, and Unrealized P&L",
+        "Zero-Database Streaming Engine: High-throughput FastAPI proxy streaming real-time and historical OHLCV data from financial feeds with zero persistent storage overhead",
+        "Bilingual Localization (i18n): Native Japanese and English interface optimized for institutional financial terminology",
         "Type-Safe GraphQL Gateway: Node.js/Express Apollo Server managing portfolios, user sessions with GeoIP auditing, and Stripe subscription monetization"
       ],
       demo: "https://www.imarketpredict.com/",
@@ -55,11 +55,11 @@ export default function Projects({ showToast }) {
     {
       id: 3,
       title: "Adam-i Talent Hub",
-      subtitle: "Enterprise AI Talent Acquisition & Intelligent Matching System",
+      subtitle: "Cross-Border AI Talent Matching & Multimodal Screening",
       category: "genai",
       image: "/project-talenthub.jpg",
       tags: ["React 19", "TypeScript", "Node.js", "MongoDB Vector", "Gemini 2.5 Pro", "Azure Doc Intel", "MediaPipe Vision", "Azure Speech", "Three.js"],
-      summary: "An enterprise-grade, multi-tenant talent acquisition platform automating cross-border hiring between Japan and international markets. Integrates vector search, Gemini 2.5 Pro reasoning, automated IMAP email JD ingestion, agency conflict resolution, and an in-browser 3D AI Mock Interview Studio with computer vision gaze and posture tracking.",
+      summary: "Cross-border AI talent matching platform pairing Gemini 2.5 Pro semantic vector search with in-browser 3D computer vision mock interviews.",
       metrics: "Parses resumes in <3s (97% faster); 0% agency conflicts via Levenshtein matching; 85% match time saved; 50% higher interview pass rate",
       features: [
         "Dual-Engine Semantic Matching: Combines MongoDB Vector cosine similarity with Google Gemini 2.5 Pro for 4-dimensional scoring (Skills, JLPT Level, Work Style, Domain Experience) with mathematical consistency checks",
@@ -75,11 +75,11 @@ export default function Projects({ showToast }) {
     {
       id: 4,
       title: "InterviewMate",
-      subtitle: "AI-Driven Mock Interview & Career Assessment System",
+      subtitle: "AI Mock Interview & Real-Time Performance Analytics",
       category: "genai",
       image: "/project-interviewmate.png",
       tags: ["React 18", "TypeScript", "Python", "FastAPI", "LLMs", "MediaPipe Vision", "Azure Speech"],
-      summary: "An AI-powered interview preparation platform that conducts interactive technical and behavioral mock interview sessions with real-time feedback.",
+      summary: "Interactive AI interview prep system delivering real-time technical and behavioral assessments with automated candidate feedback.",
       metrics: "Live production deployment on interviewmate.jp providing automated candidate response analysis",
       features: [
         "Conversational AI Interviewer: Simulates real-time technical and behavioral interview scenarios based on target job roles",
@@ -93,11 +93,11 @@ export default function Projects({ showToast }) {
     {
       id: 5,
       title: "AniLearn 日本語",
-      subtitle: "Full-Stack Gamified Japanese Mastery & Media Immersion Platform",
+      subtitle: "Gamified Japanese Mastery & Media Immersion Platform",
       category: "fullstack",
       image: "/project-anilearn.jpg",
       tags: ["React 18", "TypeScript", "Node.js", "Express", "MongoDB", "Web Speech API", "Tailwind CSS"],
-      summary: "A comprehensive, gamified Japanese language learning web platform taking learners from zero knowledge to JLPT N5/N4 proficiency. Integrates authentic anime dialogues and daily journal entries with structured linguistic pedagogy.",
+      summary: "Gamified Japanese mastery platform integrating anime dialogues, speech synthesis, and JLPT pedagogy with 3,000+ interactive exercises.",
       metrics: "3,000+ interactive exercises, 1,488+ JLPT words with audio, 318 Kanji, and 100% TypeScript type safety",
       features: [
         "Adaptive Daily Study Plan Engine: Dynamically partitions 1,488+ vocabulary words, 318 Kanji, and 100+ lessons across customizable timelines with cloud synchronization",
@@ -112,11 +112,11 @@ export default function Projects({ showToast }) {
     {
       id: 6,
       title: "Clinova Health Care (CMS)",
-      subtitle: "Enterprise Hospital & Clinical Workflow Management Platform",
+      subtitle: "Enterprise Hospital & Clinical Workflow Management",
       category: "fullstack",
       image: "/project-cms.png",
       tags: ["Django 5", "React 19", "MySQL", "Django REST", "SimpleJWT", "ReportLab 4.4", "Hugging Face AI", "jsPDF", "Docker"],
-      summary: "An enterprise, multi-role hospital and outpatient department (OPD) platform unifying front-desk patient intake, intelligent 10-minute collision-proof slot scheduling, electronic health records (EHR), multi-dosage prescriptions, pathology automation with vector ReportLab PDF generation, pharmacy inventory/POS cashiering, and clinical AI chat.",
+      summary: "Enterprise hospital management system with collision-proof slot scheduling, EHR, ReportLab pathology PDFs, and 5-tier RBAC security.",
       metrics: "31,061 LOC across 136 files, 124 RESTful endpoints, 20 relational models, and 5-tier RBAC security",
       features: [
         "5-Tier Role-Based Access Control (RBAC): Strict zero-trust group permissions across Administrators, Doctors, Receptionists, Pharmacists, and Lab Technicians with SimpleJWT auth",
@@ -132,11 +132,11 @@ export default function Projects({ showToast }) {
     {
       id: 7,
       title: "FaithAI",
-      subtitle: "Autonomous Web-Scraping & RAG Conversational Intelligence Platform",
+      subtitle: "Autonomous Crawler & Low-Latency CPU RAG Engine",
       category: "genai",
       image: "/project-faithai.png",
       tags: ["Hugging Face", "TinyLlama-1.1B", "Meta FAISS", "Scrapy Spider", "Django 5 REST", "React 19", "bge-small-en", "PyTorch"],
-      summary: "An end-to-end autonomous Retrieval-Augmented Generation (RAG) platform pairing an automated Scrapy web-crawler with an in-memory FAISS vector database and local CPU-optimized LLM inference (TinyLlama-1.1B with FLAN-T5 fallback). Enables instant zero-cost conversational Q&A over live academic curricula with a one-click autonomous self-healing re-crawl trigger.",
+      summary: "Autonomous Scrapy crawler and FAISS vector RAG engine running CPU-optimized TinyLlama-1.1B inference with sub-1.8s latency at zero API cost.",
       metrics: "<1.8s CPU inference latency, <15ms FAISS vector search, 100% ground-truth alignment, $0.00/mo operating cost",
       features: [
         "Autonomous Scrapy Crawler Pipeline: CrawlSpider indexing 15+ complex course curricula with canonical URL deduplication, noise elimination, and thread-safe Django ORM ingestion",
@@ -151,9 +151,7 @@ export default function Projects({ showToast }) {
     }
   ];
 
-  const filteredProjects = activeFilter === 'all'
-    ? projects
-    : projects.filter(p => p.category === activeFilter);
+  const filteredProjects = projects.filter(p => p.category === activeFilter);
 
   const handleOpenDemo = (project, e) => {
     e.stopPropagation();
@@ -171,13 +169,13 @@ export default function Projects({ showToast }) {
   };
 
   return (
-    <section id="projects" className="section-padding projects-section">
+    <section id="projects" className="section-padding projects-section editorial-showcase-dark">
       <div className="container">
         {/* Header */}
         <div className="projects-header">
           <div>
             <span className="section-tag">03 // FEATURED WORK</span>
-            <h2 className="section-title">Production AI & Full-Stack Systems.</h2>
+            <h2 className="section-title">PRODUCTION AI &amp; FULL-STACK SYSTEMS.</h2>
           </div>
           <p className="section-subtitle">
             Flagship enterprise platforms, quantitative deep learning engines, and document intelligence systems built at Adam-i Innovations and live on production domains.
@@ -200,69 +198,58 @@ export default function Projects({ showToast }) {
         {/* Projects Cards Grid */}
         <div className="projects-grid">
           {filteredProjects.map((project) => (
-            <div 
-              key={project.id} 
-              className="project-card glass-panel"
-              onClick={() => setSelectedProject(project)}
-            >
-              {/* Thumbnail Container */}
-              <div className="project-image-wrap">
-                <img 
-                  src={project.image} 
-                  alt={project.title} 
-                  className="project-img" 
-                  loading="lazy" 
-                />
-              </div>
-
-              {/* Card Content */}
-              <div className="project-card-body">
-                <div className="project-meta-row">
-                  <span className="project-category-tag">{project.subtitle}</span>
+            <TiltCard key={project.id}>
+              <div 
+                className="project-card glass-panel"
+                onClick={() => setSelectedProject(project)}
+              >
+                {/* Thumbnail Container */}
+                <div className="project-image-wrap">
+                  <img 
+                    src={project.image} 
+                    alt={project.title} 
+                    className="project-img" 
+                    loading="lazy" 
+                  />
                 </div>
 
-                <h3 className="project-card-title">{project.title}</h3>
-                <p className="project-card-summary">{project.summary}</p>
+                {/* Card Content */}
+                <div className="project-card-body">
+                  <div className="project-card-header-group">
+                    <h3 className="project-card-title">{project.title}</h3>
+                    <p className="project-card-subtitle">{project.subtitle}</p>
+                  </div>
 
-                {/* Tech Badges */}
-                <div className="project-tech-tags">
-                  {project.tags.slice(0, 5).map((tag) => (
-                    <span key={tag} className="tech-tag">{tag}</span>
-                  ))}
-                  {project.tags.length > 5 && (
-                    <span className="tech-tag">+{project.tags.length - 5} more</span>
-                  )}
-                </div>
-
-                {/* Actions Footer */}
-                <div className="project-card-actions">
-                  <div className="project-card-actions-left">
+                  {/* Actions Footer */}
+                  <div className="project-card-actions">
+                    <div className="project-card-actions-left">
+                      <button 
+                        className="project-link-btn"
+                        onClick={(e) => handleOpenDemo(project, e)}
+                        title={project.demo.includes('github') ? "View on GitHub" : "Open Live Platform"}
+                      >
+                        <span>{project.demo.includes('github') ? "View Source" : "Live Platform"}</span>
+                        <ArrowUpRight size={16} />
+                      </button>
+                      <button 
+                        className="project-case-study-btn"
+                        onClick={(e) => { e.stopPropagation(); setSelectedProject(project); }}
+                        title="View Full Case Study"
+                      >
+                        <span>Case Study</span>
+                      </button>
+                    </div>
                     <button 
-                      className="project-link-btn"
-                      onClick={(e) => handleOpenDemo(project, e)}
-                      title={project.demo.includes('github') ? "View on GitHub" : "Open Live Platform"}
+                      className="project-icon-link"
+                      onClick={(e) => handleOpenGithub(project, e)}
+                      title="View GitHub Repository"
                     >
-                      <span>{project.demo.includes('github') ? "View Source" : "Live Platform"}</span>
-                      <ArrowUpRight size={16} />
-                    </button>
-                    <button 
-                      className="project-case-study-btn"
-                      onClick={(e) => { e.stopPropagation(); setSelectedProject(project); }}
-                      title="View Full Case Study"
-                    >
-                      <span>Case Study</span>
+                      <GithubIcon size={18} />
                     </button>
                   </div>
-                  <button 
-                    className="project-icon-link"
-                    onClick={(e) => handleOpenGithub(project, e)}
-                    title="View GitHub Repository"
-                  >
-                    <GithubIcon size={18} />
-                  </button>
                 </div>
               </div>
-            </div>
+            </TiltCard>
           ))}
         </div>
 
@@ -271,7 +258,7 @@ export default function Projects({ showToast }) {
           <div className="modal-backdrop" onClick={() => setSelectedProject(null)}>
             <div className="modal-dialog glass-panel" onClick={(e) => e.stopPropagation()}>
               <div className="modal-header">
-                <div>
+                <div className="modal-title-group">
                   <span className="modal-tag">{selectedProject.subtitle}</span>
                   <h3 className="modal-title">{selectedProject.title}</h3>
                 </div>
@@ -280,7 +267,7 @@ export default function Projects({ showToast }) {
                   onClick={() => setSelectedProject(null)}
                   aria-label="Close dialog"
                 >
-                  <X size={22} />
+                  <X size={20} />
                 </button>
               </div>
 
@@ -290,7 +277,7 @@ export default function Projects({ showToast }) {
                 </div>
 
                 <div className="modal-metrics-highlight">
-                  <Sparkles size={18} color="#FF4A17" />
+                  <Sparkles size={18} color="#06B6D4" />
                   <span><strong>Impact & Scope:</strong> {selectedProject.metrics}</span>
                 </div>
 
@@ -304,7 +291,7 @@ export default function Projects({ showToast }) {
                   <ul className="modal-features-list">
                     {selectedProject.features.map((feat, idx) => (
                       <li key={idx}>
-                        <CheckCircle size={16} color="#FF4A17" />
+                        <CheckCircle size={16} color="#06B6D4" />
                         <span>{feat}</span>
                       </li>
                     ))}

@@ -102,13 +102,6 @@ export default function Navbar({ theme, toggleTheme }) {
             <span>Appearance</span>
             <ThemeToggle theme={theme} toggleTheme={toggleTheme} className="mobile-theme-toggle" />
           </div>
-          <a
-            href="#contact"
-            onClick={(e) => handleScrollTo(e, '#contact')}
-            className="btn-primary mobile-menu-cta"
-          >
-            GET IN TOUCH
-          </a>
         </div>
       )}
     </header>

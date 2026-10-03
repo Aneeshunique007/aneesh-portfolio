@@ -1,34 +1,26 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Hero from './components/Hero';
-import Navbar from './components/Navbar';
 import About from './components/About';
 import Skills from './components/Skills';
+import EditorialBreather from './components/EditorialBreather';
 import Projects from './components/Projects';
 import Experience from './components/Experience';
+import EditorialCTA from './components/EditorialCTA';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
-import { Sparkles, Check } from 'lucide-react';
+import CyberGridBackground from './components/CyberGridBackground';
+import { Check } from 'lucide-react';
 import './App.css';
+import './ModernEnhancements.css';
 
 function App() {
-  const [theme, setTheme] = useState(() => {
-    const saved = localStorage.getItem('portfolio-theme');
-    if (saved === 'light' || saved === 'dark') return saved;
-    return window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
-  });
-
   const [toastMessage, setToastMessage] = useState('');
   const [toastVisible, setToastVisible] = useState(false);
 
-  React.useEffect(() => {
-    document.documentElement.setAttribute('data-theme', theme);
-    document.body.setAttribute('data-theme', theme);
-    localStorage.setItem('portfolio-theme', theme);
-  }, [theme]);
-
-  const toggleTheme = () => {
-    setTheme(prev => (prev === 'dark' ? 'light' : 'dark'));
-  };
+  useEffect(() => {
+    document.documentElement.setAttribute('data-theme', 'dark');
+    document.body.setAttribute('data-theme', 'dark');
+  }, []);
 
   const showToast = (message) => {
     setToastMessage(message);
@@ -39,25 +31,55 @@ function App() {
   };
 
   return (
-    <div className="portfolio-app" data-theme={theme}>
-      {/* Floating Sticky Nav that appears on scroll */}
-      <Navbar theme={theme} toggleTheme={toggleTheme} />
+    <div className="portfolio-app" data-theme="dark">
+      {/* Interactive 3D Cyber Perspective Grid */}
+      <CyberGridBackground theme="dark" />
 
       <main>
-        {/* Hero Section matching the reference layout */}
-        <Hero showToast={showToast} theme={theme} toggleTheme={toggleTheme} />
+        {/* Hero Section */}
+        <Hero showToast={showToast} />
 
-        {/* 01 // About Me */}
+        {/* 01 // Introduction */}
         <About showToast={showToast} />
 
-        {/* 02 // Capabilities / Skills */}
+        {/* Interstitial Breather 1: Introduction to Technical Arsenal */}
+        <EditorialBreather 
+          statusBadge="CORE PHILOSOPHY"
+          line1="ENGINEERING"
+          line2="INTELLIGENCE."
+          ctaText="Explore Technical Arsenal"
+          targetId="#skills"
+        />
+
+        {/* 02 // Technical Domain Matrix & Skills */}
         <Skills />
 
-        {/* 03 // Featured Work / Projects */}
+        {/* Interstitial Breather 2: Skills to Production Systems */}
+        <EditorialBreather 
+          statusBadge="VALIDATED ARCHITECTURES"
+          line1="SHIPPED TO PRODUCTION."
+          line2="BUILT FOR ENTERPRISE SCALE."
+          ctaText="Explore Flagship Case Studies"
+          targetId="#projects"
+        />
+
+        {/* 03 // Featured Work */}
         <Projects showToast={showToast} />
+
+        {/* Interstitial Breather 3: Projects to Career Journey */}
+        <EditorialBreather 
+          statusBadge="CAREER VELOCITY"
+          line1="CHRONICLE OF IMPACT."
+          line2="CONSTANT ENGINEERING EVOLUTION."
+          ctaText="Inspect Career Journey"
+          targetId="#experience"
+        />
 
         {/* 04 // Journey / Career Milestones */}
         <Experience />
+
+        {/* Interstitial Breather 4: Giant Editorial CTA (HAVE AN IDEA? LET'S BUILD IT.) */}
+        <EditorialCTA onOpenContact={() => document.querySelector("#contact")?.scrollIntoView({ behavior: 'smooth' })} />
 
         {/* 05 // Get in Touch / Contact */}
         <Contact showToast={showToast} />
@@ -69,7 +91,7 @@ function App() {
       {/* Floating Toast Notification */}
       {toastVisible && (
         <div className="toast-notice" role="status" aria-live="polite">
-          <Check size={16} color="#FF4A17" />
+          <Check size={16} color="#3B82F6" />
           <span>{toastMessage}</span>
         </div>
       )}

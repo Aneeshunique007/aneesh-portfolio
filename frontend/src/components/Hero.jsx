@@ -5,15 +5,13 @@ import {
   ArrowRight, 
   Copy, 
   Check, 
-  Globe, 
   Mail,
   ChevronDown,
   Sparkles
 } from 'lucide-react';
-import { GithubIcon, LinkedinIcon, TwitterIcon, InstagramIcon, FacebookIcon } from './Icons';
-import ThemeToggle from './ThemeToggle';
+import { GithubIcon, LinkedinIcon, InstagramIcon, FacebookIcon } from './Icons';
 
-export default function Hero({ onNavigate, showToast, theme, toggleTheme }) {
+export default function Hero({ onNavigate, showToast }) {
   const [menuOpen, setMenuOpen] = useState(false);
   const [copiedEmail, setCopiedEmail] = useState(false);
 
@@ -48,91 +46,20 @@ export default function Hero({ onNavigate, showToast, theme, toggleTheme }) {
 
   return (
     <header id="hero" className="hero-section">
-      {/* Background Cinematic Image with Overlays */}
-      <div className="hero-bg-container">
-        <img 
-          src="/hero-bg.jpg" 
-          alt="Aneesh - Full-stack Software Engineer" 
-          className="hero-bg-image"
-        />
-        <div className="hero-vignette-overlay"></div>
-        <div className="hero-gradient-overlay"></div>
-      </div>
-
-      {/* Top Left Reddish-Orange Dot Pattern Matrix */}
-      <div className="hero-dots-matrix hero-dots-top" aria-hidden="true">
-        <svg width="208" height="208" viewBox="0 0 208 208" fill="none">
-          <defs>
-            <radialGradient id="dotGlowTop" cx="50%" cy="50%" r="50%">
-              <stop offset="0%" stopColor="#FF5722" stopOpacity="0.9" />
-              <stop offset="100%" stopColor="#FF4A17" stopOpacity="0.4" />
-            </radialGradient>
-          </defs>
-          {Array.from({ length: 14 }).map((_, row) =>
-            Array.from({ length: 14 }).map((_, col) => {
-              if (row + col > 19) return null;
-              return (
-                <circle
-                  key={`top-${row}-${col}`}
-                  cx={12 + col * 14}
-                  cy={12 + row * 14}
-                  r="2.6"
-                  fill="url(#dotGlowTop)"
-                  opacity={0.35 + (col * 0.045)}
-                />
-              );
-            })
-          )}
-        </svg>
-      </div>
-
-      {/* Lower Right Reddish-Orange Dot Pattern Matrix */}
-      <div className="hero-dots-matrix hero-dots-bottom" aria-hidden="true">
-        <svg width="208" height="208" viewBox="0 0 208 208" fill="none">
-          <defs>
-            <radialGradient id="dotGlowBottom" cx="50%" cy="50%" r="50%">
-              <stop offset="0%" stopColor="#FF5722" stopOpacity="0.9" />
-              <stop offset="100%" stopColor="#FF4A17" stopOpacity="0.4" />
-            </radialGradient>
-          </defs>
-          {Array.from({ length: 14 }).map((_, row) =>
-            Array.from({ length: 14 }).map((_, col) => {
-              if (row + col > 19) return null;
-              return (
-                <circle
-                  key={`bot-${row}-${col}`}
-                  cx={12 + col * 14}
-                  cy={12 + row * 14}
-                  r="2.6"
-                  fill="url(#dotGlowBottom)"
-                  opacity={0.35 + (col * 0.045)}
-                />
-              );
-            })
-          )}
-        </svg>
-      </div>
-
-      {/* Top Right Actions: Theme Toggle & Minimalist Square Hamburger Button */}
+      {/* Top Right Actions: Minimalist Square Hamburger Button */}
       <nav className="hero-top-nav">
         <div className="hero-top-actions">
-          <ThemeToggle theme={theme} toggleTheme={toggleTheme} className="hero-theme-toggle" />
-          
           <button 
             className={`hero-menu-btn ${menuOpen ? 'active' : ''}`}
             onClick={() => setMenuOpen(!menuOpen)}
             aria-label={menuOpen ? "Close navigation menu" : "Open navigation menu"}
             aria-expanded={menuOpen}
           >
-            {menuOpen ? (
-              <X size={24} color="#ffffff" strokeWidth={2} />
-            ) : (
-              <div className="hamburger-bars">
-                <span></span>
-                <span></span>
-                <span></span>
-              </div>
-            )}
+            <div className="hamburger-bars">
+              <span></span>
+              <span></span>
+              <span></span>
+            </div>
           </button>
         </div>
       </nav>
@@ -141,7 +68,7 @@ export default function Hero({ onNavigate, showToast, theme, toggleTheme }) {
       <div className="hero-center-content">
         <div className="hero-kicker-badge">
           <span className="live-indicator"></span>
-          <span>AI ENGINEER & DATA SCIENTIST • ADAM-I INNOVATIONS</span>
+          <span>LEAD AI ENGINEER</span>
         </div>
 
         <h1 className="hero-main-title">
@@ -150,7 +77,7 @@ export default function Hero({ onNavigate, showToast, theme, toggleTheme }) {
         </h1>
 
         <p className="hero-subtext">
-          AI Engineer & Data Scientist at Adam-i Innovations — a Japan-based company operating from Trivandrum, India. Specializing in Generative AI, RAG Architectures & Full-Stack Systems.
+          Architecting production-grade Generative AI systems, multimodal RAG pipelines, and institutional quantitative forecasting models.
         </p>
 
         <div className="hero-actions">
@@ -167,26 +94,74 @@ export default function Hero({ onNavigate, showToast, theme, toggleTheme }) {
 
       {/* Bottom Bar: Left Contact & Right Socials */}
       <div className="hero-bottom-bar">
-        {/* Bottom Left Contact Info */}
+        {/* Contact Info Callout */}
         <div className="hero-contact-callout">
           <span className="contact-heading">Let's work together</span>
-          <a 
-            href={`mailto:${email}`} 
-            onClick={handleCopyEmail}
-            className="contact-email"
-            title="Click to copy email address"
-          >
-            {email}
-            <span className="copy-badge">
-              {copiedEmail ? <Check size={13} color="#FF4A17" /> : <Copy size={13} />}
-            </span>
-          </a>
-          <a href={`tel:${phone.replace(/\s+/g, '')}`} className="contact-phone">
-            {phone}
-          </a>
+
+          {/* Email ID & Social Links on the EXACT SAME LINE */}
+          <div className="hero-email-socials-row">
+            <a 
+              href={`mailto:${email}`} 
+              onClick={handleCopyEmail}
+              className="contact-email"
+              title="Click to copy email address"
+            >
+              {email}
+              <span className="copy-badge">
+                {copiedEmail ? <Check size={13} color="#06B6D4" /> : <Copy size={13} />}
+              </span>
+            </a>
+
+            {/* Social Links on the same line as the email id */}
+            <div className="hero-social-links" aria-label="Social Profiles">
+              <a 
+                href="https://www.facebook.com/aneesh.us.3" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="social-icon-btn"
+                aria-label="Facebook profile"
+              >
+                <FacebookIcon size={16} />
+              </a>
+              <a 
+                href={linkedinUrl} 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="social-icon-btn"
+                aria-label="LinkedIn profile"
+              >
+                <LinkedinIcon size={16} />
+              </a>
+              <a 
+                href="https://www.instagram.com/__b_a_d_b_o_y__007/" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="social-icon-btn"
+                aria-label="Instagram profile"
+              >
+                <InstagramIcon size={16} />
+              </a>
+              <a 
+                href="https://github.com/Aneeshunique007" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="social-icon-btn"
+                aria-label="GitHub profile"
+              >
+                <GithubIcon size={16} />
+              </a>
+            </div>
+          </div>
+
+          {/* Phone Number */}
+          <div className="hero-phone-row">
+            <a href={`tel:${phone.replace(/\s+/g, '')}`} className="contact-phone">
+              {phone}
+            </a>
+          </div>
         </div>
 
-        {/* Scroll Indicator */}
+        {/* Scroll Indicator: Guaranteed True Horizontal Center */}
         <div 
           className="hero-scroll-prompt" 
           onClick={() => handleLinkClick("#about")}
@@ -195,65 +170,7 @@ export default function Hero({ onNavigate, showToast, theme, toggleTheme }) {
           aria-label="Scroll down to About section"
         >
           <span>EXPLORE</span>
-          <ChevronDown size={18} className="bounce-arrow" />
-        </div>
-
-        {/* Bottom Right Social Links (Matches reference image) */}
-        <div className="hero-social-links" aria-label="Social Profiles">
-          <a 
-            href="https://www.facebook.com/aneesh.us.3" 
-            target="_blank" 
-            rel="noopener noreferrer" 
-            className="social-icon-btn"
-            aria-label="Facebook profile"
-          >
-            <FacebookIcon size={17} />
-          </a>
-          <a 
-            href="https://twitter.com" 
-            target="_blank" 
-            rel="noopener noreferrer" 
-            className="social-icon-btn"
-            aria-label="Twitter / X profile"
-          >
-            <TwitterIcon size={17} />
-          </a>
-          <a 
-            href={linkedinUrl} 
-            target="_blank" 
-            rel="noopener noreferrer" 
-            className="social-icon-btn"
-            aria-label="LinkedIn profile"
-          >
-            <LinkedinIcon size={17} />
-          </a>
-          <a 
-            href="https://aneesh.dev" 
-            target="_blank" 
-            rel="noopener noreferrer" 
-            className="social-icon-btn"
-            aria-label="Personal website"
-          >
-            <Globe size={17} />
-          </a>
-          <a 
-            href="https://www.instagram.com/__b_a_d_b_o_y__007/" 
-            target="_blank" 
-            rel="noopener noreferrer" 
-            className="social-icon-btn"
-            aria-label="Instagram profile"
-          >
-            <InstagramIcon size={17} />
-          </a>
-          <a 
-            href="https://github.com/Aneeshunique007" 
-            target="_blank" 
-            rel="noopener noreferrer" 
-            className="social-icon-btn"
-            aria-label="GitHub profile"
-          >
-            <GithubIcon size={17} />
-          </a>
+          <ChevronDown size={17} className="bounce-arrow" />
         </div>
       </div>
 
@@ -268,7 +185,6 @@ export default function Hero({ onNavigate, showToast, theme, toggleTheme }) {
               ANEESH U S
             </div>
             <div className="drawer-header-actions">
-              <ThemeToggle theme={theme} toggleTheme={toggleTheme} className="drawer-theme-toggle" />
               <button 
                 className="drawer-close-btn"
                 onClick={() => setMenuOpen(false)}
@@ -300,7 +216,7 @@ export default function Hero({ onNavigate, showToast, theme, toggleTheme }) {
             <div className="drawer-footer-info">
               <div className="status-pill">
                 <span className="status-dot"></span>
-                AI Engineer @ Adam-i Innovations
+                AI Engineer & Data Scientist • Tokyo / Trivandrum
               </div>
               <div className="drawer-contact-row">
                 <a href={`mailto:${email}`} className="drawer-email">{email}</a>

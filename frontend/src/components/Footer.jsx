@@ -1,6 +1,6 @@
 import React from 'react';
-import { ArrowUp, Mail, Heart } from 'lucide-react';
-import { GithubIcon, LinkedinIcon, TwitterIcon, InstagramIcon, FacebookIcon } from './Icons';
+import { ArrowUp, Mail } from 'lucide-react';
+import { GithubIcon, LinkedinIcon, InstagramIcon, FacebookIcon } from './Icons';
 
 export default function Footer() {
   const scrollToTop = () => {

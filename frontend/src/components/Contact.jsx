@@ -1,15 +1,14 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { 
   Mail, 
   Phone, 
   MapPin, 
   Send, 
   Copy, 
-  Check, 
-  Clock, 
-  Sparkles,
+  Check,
   CheckCircle2,
-  AlertCircle
+  AlertCircle,
+  ChevronDown
 } from 'lucide-react';
 
 export default function Contact({ showToast }) {
@@ -25,10 +24,30 @@ export default function Contact({ showToast }) {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const [errorMsg, setErrorMsg] = useState('');
+  const [dropdownOpen, setDropdownOpen] = useState(false);
+  const dropdownRef = useRef(null);
+
+  const inquiryOptions = [
+    { value: "web-app", label: "Full-Stack Web Application" },
+    { value: "genai-llm", label: "Generative AI & LLM Systems" },
+    { value: "frontend-ui", label: "Frontend Engineering & UI/UX" },
+    { value: "backend-cloud", label: "Cloud Architecture & API Infrastructure" },
+    { value: "consulting", label: "System Audit / Technical Consultation" },
+    { value: "fulltime", label: "Full-time Engineering Role" }
+  ];
+
+  useEffect(() => {
+    const handleClickOutside = (e) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(e.target)) {
+        setDropdownOpen(false);
+      }
+    };
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
 
   const email = "aneeshusunique@gmail.com";
   const phone = "+91 86672 70586";
-  const linkedin = "https://www.linkedin.com/in/aneesh-u-s";
 
   const handleCopy = (text, type) => {
     navigator.clipboard.writeText(text);
@@ -79,7 +98,7 @@ export default function Contact({ showToast }) {
         {/* Header */}
         <div className="contact-header">
           <span className="section-tag">05 // GET IN TOUCH</span>
-          <h2 className="section-title">Let's discuss your next breakthrough.</h2>
+          <h2 className="section-title">LET'S DISCUSS YOUR NEXT BREAKTHROUGH.</h2>
           <p className="section-subtitle">
             Have a project in mind, an architectural challenge, or looking to add senior engineering talent to your squad? Let's connect.
           </p>
@@ -90,7 +109,7 @@ export default function Contact({ showToast }) {
           <div className="contact-info-col">
             <div className="contact-card glass-panel">
               <div className="contact-card-icon">
-                <Mail size={22} color="#FF4A17" />
+                <Mail size={22} color="#06B6D4" />
               </div>
               <div className="contact-card-content">
                 <span className="contact-label">EMAIL ADDRESS</span>
@@ -101,7 +120,7 @@ export default function Contact({ showToast }) {
                     onClick={() => handleCopy(email, 'email')}
                     title="Copy email"
                   >
-                    {copiedEmail ? <Check size={14} color="#FF4A17" /> : <Copy size={14} />}
+                    {copiedEmail ? <Check size={14} color="#06B6D4" /> : <Copy size={14} />}
                   </button>
                 </div>
                 <span className="contact-note">Typically replies within 4-8 hours</span>
@@ -110,7 +129,7 @@ export default function Contact({ showToast }) {
 
             <div className="contact-card glass-panel">
               <div className="contact-card-icon">
-                <Phone size={22} color="#FF4A17" />
+                <Phone size={22} color="#06B6D4" />
               </div>
               <div className="contact-card-content">
                 <span className="contact-label">DIRECT PHONE / WHATSAPP</span>
@@ -121,7 +140,7 @@ export default function Contact({ showToast }) {
                     onClick={() => handleCopy(phone, 'phone')}
                     title="Copy phone"
                   >
-                    {copiedPhone ? <Check size={14} color="#FF4A17" /> : <Copy size={14} />}
+                    {copiedPhone ? <Check size={14} color="#06B6D4" /> : <Copy size={14} />}
                   </button>
                 </div>
                 <span className="contact-note">Available Mon - Fri, 9am - 7pm IST</span>
@@ -130,20 +149,12 @@ export default function Contact({ showToast }) {
 
             <div className="contact-card glass-panel">
               <div className="contact-card-icon">
-                <MapPin size={22} color="#FF4A17" />
+                <MapPin size={22} color="#06B6D4" />
               </div>
               <div className="contact-card-content">
                 <span className="contact-label">LOCATION</span>
                 <span className="contact-val-text">Trivandrum, Kerala, India</span>
                 <span className="contact-note">Open to remote worldwide & enterprise AI consulting</span>
-              </div>
-            </div>
-
-            <div className="status-banner-card glass-panel">
-              <div className="status-pulse-dot"></div>
-              <div>
-                <strong className="status-strong">Currently Accepting New Projects</strong>
-                <p className="status-desc">Bookings open for Q4 2026. Available for architectural audits and full-cycle development.</p>
               </div>
             </div>
           </div>
@@ -154,7 +165,7 @@ export default function Contact({ showToast }) {
               {submitted ? (
                 <div className="form-success-state">
                   <div className="success-icon-wrap">
-                    <CheckCircle2 size={54} color="#FF4A17" />
+                    <CheckCircle2 size={54} color="#06B6D4" />
                   </div>
                   <h3>Message Dispatched!</h3>
                   <p>
@@ -208,21 +219,49 @@ export default function Contact({ showToast }) {
                     </div>
                   </div>
 
-                  <div className="form-group">
+                  <div className="form-group custom-select-group" ref={dropdownRef}>
                     <label htmlFor="projectType">Inquiry Type</label>
-                    <select 
-                      id="projectType"
-                      name="projectType" 
-                      value={formData.projectType}
-                      onChange={handleChange}
-                      className="form-select"
+                    <div 
+                      className={`custom-select-trigger ${dropdownOpen ? 'open' : ''}`}
+                      onClick={() => setDropdownOpen(!dropdownOpen)}
+                      tabIndex={0}
+                      onKeyDown={(e) => {
+                        if (e.key === 'Enter' || e.key === ' ') {
+                          e.preventDefault();
+                          setDropdownOpen(!dropdownOpen);
+                        }
+                      }}
+                      role="combobox"
+                      aria-expanded={dropdownOpen}
+                      aria-haspopup="listbox"
                     >
-                      <option value="web-app">Full-Stack Web Application</option>
-                      <option value="frontend-ui">Frontend Engineering & UI/UX</option>
-                      <option value="backend-cloud">Cloud Architecture & API Infrastructure</option>
-                      <option value="consulting">System Audit / Technical Consultation</option>
-                      <option value="fulltime">Full-time Engineering Role</option>
-                    </select>
+                      <span className="custom-select-value">
+                        {inquiryOptions.find(o => o.value === formData.projectType)?.label || "Select Inquiry Type"}
+                      </span>
+                      <ChevronDown size={18} className={`custom-select-chevron ${dropdownOpen ? 'rotate' : ''}`} />
+                    </div>
+
+                    {dropdownOpen && (
+                      <div className="custom-select-menu glass-panel" role="listbox">
+                        {inquiryOptions.map((opt) => (
+                          <div 
+                            key={opt.value}
+                            className={`custom-select-option ${formData.projectType === opt.value ? 'selected' : ''}`}
+                            onClick={() => {
+                              setFormData(prev => ({ ...prev, projectType: opt.value }));
+                              setDropdownOpen(false);
+                            }}
+                            role="option"
+                            aria-selected={formData.projectType === opt.value}
+                          >
+                            <span>{opt.label}</span>
+                            {formData.projectType === opt.value && (
+                              <Check size={16} className="custom-select-check" />
+                            )}
+                          </div>
+                        ))}
+                      </div>
+                    )}
                   </div>
 
                   <div className="form-group">
