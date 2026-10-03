@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react';
+import Lenis from 'lenis';
+import 'lenis/dist/lenis.css';
 import Hero from './components/Hero';
 import About from './components/About';
 import Skills from './components/Skills';
@@ -20,6 +22,26 @@ function App() {
   useEffect(() => {
     document.documentElement.setAttribute('data-theme', 'dark');
     document.body.setAttribute('data-theme', 'dark');
+
+    // Initialize Lenis for luxurious, inertial smooth-flowing scrolling
+    const lenis = new Lenis({
+      duration: 1.15,
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      smoothWheel: true,
+      touchMultiplier: 1.5,
+    });
+
+    let rafId;
+    function raf(time) {
+      lenis.raf(time);
+      rafId = requestAnimationFrame(raf);
+    }
+    rafId = requestAnimationFrame(raf);
+
+    return () => {
+      cancelAnimationFrame(rafId);
+      lenis.destroy();
+    };
   }, []);
 
   const showToast = (message) => {
@@ -42,13 +64,15 @@ function App() {
         {/* 01 // Introduction */}
         <About showToast={showToast} />
 
-        {/* Interstitial Breather 1: Introduction to Technical Arsenal */}
+        {/* Interstitial Breather 1: Giant Flowing Engineering Intelligence */}
         <EditorialBreather 
           statusBadge="CORE PHILOSOPHY"
           line1="ENGINEERING"
           line2="INTELLIGENCE."
           ctaText="Explore Technical Arsenal"
           targetId="#skills"
+          size="giant"
+          flowingTape={true}
         />
 
         {/* 02 // Technical Domain Matrix & Skills */}

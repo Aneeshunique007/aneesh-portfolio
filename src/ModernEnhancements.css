@@ -1402,6 +1402,32 @@
   text-align: center;
 }
 
+.giant-breather-section {
+  padding: 130px 0 110px;
+}
+
+.giant-breather-headline {
+  font-size: clamp(3.2rem, 10.5vw, 8.2rem) !important;
+  font-weight: 900 !important;
+  line-height: 0.90 !important;
+  letter-spacing: -0.05em !important;
+  text-transform: uppercase;
+}
+
+.breather-flowing-tape {
+  margin: 36px 0 20px;
+  background: rgba(6, 182, 212, 0.04);
+  border-top: 1px solid rgba(6, 182, 212, 0.18);
+  border-bottom: 1px solid rgba(6, 182, 212, 0.18);
+}
+
+@media (max-width: 768px) {
+  .giant-breather-headline {
+    font-size: clamp(2.2rem, 11.5vw, 4.4rem) !important;
+    line-height: 0.94 !important;
+  }
+}
+
 .breather-parallax-line {
   display: block;
   white-space: nowrap;
