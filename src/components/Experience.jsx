@@ -7,7 +7,7 @@ export default function Experience() {
       period: "2025 — Present",
       role: "AI Engineer / Data Scientist",
       company: "Adam-i Innovations",
-      location: "Tokyo, Japan & Trivandrum, India",
+      location: "Global Remote & Distributed",
       type: "Current Role",
       bullets: [
         {
@@ -73,8 +73,8 @@ export default function Experience() {
       <div className="container">
         {/* Header */}
         <div className="experience-header">
-          <span className="section-tag">04 // JOURNEY</span>
-          <h2 className="section-title">ENGINEERING CAREER &amp; MILESTONES.</h2>
+          <span className="section-tag">03 // ENGINEERING JOURNEY</span>
+          <h2 className="section-title">CAREER TRAJECTORY &amp; <span className="title-accent">MILESTONES.</span></h2>
           <p className="section-subtitle">
             A focused track record of architecting production AI platforms, quantitative deep learning models, and scalable full-stack web systems.
           </p>

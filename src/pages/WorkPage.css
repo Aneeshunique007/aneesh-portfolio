@@ -1,0 +1,663 @@
+/* ==========================================================================
+   WORK PAGE — DOOM Praetor Argent Independent Mission Fleet
+   ========================================================================== */
+
+.work-independent-page {
+  position: relative;
+  background-color: transparent;
+  color: #f4f5f8;
+  min-height: 100vh;
+  overflow-x: clip;
+  padding-bottom: 140px;
+}
+
+/* ==========================================================================
+   Stage 1: Hero Dossier Header
+   ========================================================================== */
+.work-hero-dossier {
+  position: relative;
+  z-index: 3;
+  padding: clamp(90px, 12vh, 130px) clamp(20px, 5vw, 64px) clamp(30px, 4vh, 50px);
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+.work-dossier-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.work-status-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(14, 10, 18, 0.88);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 30, 39, 0.35);
+  padding: 5px 14px;
+  border-radius: 999px;
+  width: fit-content;
+  max-width: 100%;
+  box-sizing: border-box;
+  font-family: var(--font-mono, 'Share Tech Mono', monospace);
+  font-size: clamp(0.62rem, 2.5vw, 0.72rem);
+  letter-spacing: 0.14em;
+  color: #ffaa00;
+  font-weight: 700;
+}
+
+.status-orb-argent {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background-color: #ff1e27;
+  box-shadow: 0 0 10px #ff1e27, 0 0 18px rgba(255, 30, 39, 0.6);
+  animation: orbPulse 1.8s infinite ease-in-out;
+}
+
+@keyframes orbPulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50%      { opacity: 0.45; transform: scale(0.85); }
+}
+
+.work-fleet-title {
+  font-family: var(--font-display, 'Space Grotesk', sans-serif);
+  font-size: clamp(2.6rem, 5.2vw, 4.4rem);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  color: #f4f5f8;
+  line-height: 0.96;
+  margin: 0;
+  text-transform: uppercase;
+}
+
+.work-fleet-subtitle {
+  font-family: var(--font-mono, 'Share Tech Mono', monospace);
+  font-size: clamp(0.78rem, 1.3vw, 0.92rem);
+  letter-spacing: 0.14em;
+  color: #ffaa00;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.work-bio-lead {
+  font-family: var(--font-sans, 'Plus Jakarta Sans', sans-serif);
+  font-size: clamp(1.02rem, 1.5vw, 1.18rem);
+  font-weight: 500;
+  color: rgba(244, 245, 248, 0.88);
+  line-height: 1.55;
+  max-width: 860px;
+  margin: 0;
+}
+
+/* ── Real-time Telemetry Grid ─────────────────────────────────── */
+.work-telemetry-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 14px;
+  margin-top: 18px;
+}
+
+.work-telemetry-card {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  background: rgba(14, 10, 18, 0.82);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 30, 39, 0.22);
+  border-radius: 6px;
+  padding: 14px 16px;
+  transition: border-color 0.25s ease, transform 0.25s ease;
+}
+
+.work-telemetry-card:hover {
+  border-color: rgba(255, 170, 0, 0.5);
+  transform: translateY(-2px);
+}
+
+.telemetry-card-tag {
+  font-family: var(--font-mono, 'Share Tech Mono', monospace);
+  font-size: 0.65rem;
+  font-weight: 700;
+  color: #ffaa00;
+  letter-spacing: 0.12em;
+}
+
+.telemetry-card-val {
+  font-family: var(--font-display, 'Space Grotesk', sans-serif);
+  font-size: 1.35rem;
+  font-weight: 800;
+  color: #f4f5f8;
+  letter-spacing: -0.01em;
+}
+
+.telemetry-card-sub {
+  font-family: var(--font-mono, 'Share Tech Mono', monospace);
+  font-size: 0.58rem;
+  color: rgba(244, 245, 248, 0.6);
+  letter-spacing: 0.08em;
+}
+
+/* ==========================================================================
+   Stage 2: Filter Deck & Grid Showcase
+   ========================================================================== */
+.work-missions-section {
+  position: relative;
+  z-index: 3;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 20px clamp(20px, 5vw, 64px) 60px;
+}
+
+.work-container {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+/* ── Filter Bar ───────────────────────────────────────────────── */
+.work-filter-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid rgba(255, 30, 39, 0.2);
+}
+
+.work-filter-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(14, 10, 18, 0.7);
+  border: 1px solid rgba(255, 30, 39, 0.25);
+  border-radius: 4px;
+  padding: 7px 16px;
+  cursor: pointer;
+  font-family: var(--font-mono, 'Share Tech Mono', monospace);
+  font-size: 0.74rem;
+  letter-spacing: 0.12em;
+  color: rgba(244, 245, 248, 0.75);
+  transition: all 0.2s ease;
+}
+
+.work-filter-btn:hover {
+  border-color: rgba(255, 170, 0, 0.5);
+  color: #ffaa00;
+  background: rgba(255, 170, 0, 0.06);
+}
+
+.work-filter-btn.is-active {
+  border-color: #ff1e27;
+  background: rgba(255, 30, 39, 0.15);
+  color: #f4f5f8;
+  box-shadow: 0 0 16px rgba(255, 30, 39, 0.25);
+}
+
+.filter-btn-count {
+  font-size: 0.68rem;
+  color: #ffaa00;
+  opacity: 0.85;
+}
+
+/* ── Missions Grid ────────────────────────────────────────────── */
+.work-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+  gap: 24px;
+}
+
+.work-mission-card {
+  position: relative;
+  background: rgba(14, 10, 18, 0.88);
+  backdrop-filter: blur(14px);
+  border: 1px solid rgba(255, 30, 39, 0.22);
+  border-radius: 6px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  transition: border-color 0.3s ease, transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease;
+}
+
+.work-mission-card:hover {
+  border-color: rgba(255, 170, 0, 0.65);
+  transform: translateY(-4px);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.85), 0 0 24px rgba(255, 170, 0, 0.15);
+}
+
+/* Tactical Reticles */
+.work-mission-card .reticle {
+  position: absolute;
+  font-family: var(--font-mono, monospace);
+  font-size: 11px;
+  line-height: 1;
+  color: #ff1e27;
+  pointer-events: none;
+  z-index: 5;
+  transition: color 0.2s ease;
+}
+
+.work-mission-card:hover .reticle {
+  color: #ffaa00;
+}
+
+.work-mission-card .reticle.top-left     { top: 5px; left: 6px; }
+.work-mission-card .reticle.top-right    { top: 5px; right: 6px; }
+.work-mission-card .reticle.bottom-left  { bottom: 5px; left: 6px; }
+.work-mission-card .reticle.bottom-right { bottom: 5px; right: 6px; }
+
+/* Card Header */
+.mission-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 16px 10px;
+  border-bottom: 1px solid rgba(255, 30, 39, 0.14);
+}
+
+.mission-id-cluster {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.mission-id-badge {
+  font-family: var(--font-mono, 'Share Tech Mono', monospace);
+  font-size: 0.68rem;
+  font-weight: 700;
+  color: #ffaa00;
+  letter-spacing: 0.14em;
+}
+
+.mission-status-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-family: var(--font-mono, 'Share Tech Mono', monospace);
+  font-size: 0.6rem;
+  letter-spacing: 0.1em;
+  color: rgba(244, 245, 248, 0.65);
+}
+
+.status-dot-pulse {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background-color: #ff1e27;
+  box-shadow: 0 0 6px #ff1e27;
+}
+
+.mission-client-tag {
+  font-family: var(--font-mono, 'Share Tech Mono', monospace);
+  font-size: 0.6rem;
+  color: rgba(244, 245, 248, 0.5);
+  letter-spacing: 0.06em;
+  max-width: 140px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Image Wrap */
+.mission-image-wrap {
+  position: relative;
+  width: 100%;
+  height: 200px;
+  overflow: hidden;
+  background: #08060c;
+}
+
+.mission-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+  display: block;
+  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), filter 0.3s ease;
+  filter: contrast(1.05) brightness(0.9);
+}
+
+.work-mission-card:hover .mission-image {
+  transform: scale(1.05);
+  filter: contrast(1.1) brightness(1.0);
+}
+
+.mission-image-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(14, 10, 18, 0.1) 0%,
+    transparent 50%,
+    rgba(14, 10, 18, 0.85) 100%
+  );
+  pointer-events: none;
+}
+
+.mission-tech-role-pill {
+  position: absolute;
+  bottom: 10px;
+  left: 12px;
+  z-index: 4;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  background: rgba(14, 10, 18, 0.92);
+  border: 1px solid rgba(255, 30, 39, 0.35);
+  border-radius: 4px;
+  padding: 3px 8px;
+  font-family: var(--font-mono, 'Share Tech Mono', monospace);
+  font-size: 0.62rem;
+  letter-spacing: 0.08em;
+  color: #ffaa00;
+  backdrop-filter: blur(6px);
+}
+
+.pill-icon {
+  color: #ff1e27;
+}
+
+/* Card Body */
+.mission-card-body {
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  flex: 1;
+}
+
+.mission-title {
+  font-family: var(--font-display, 'Space Grotesk', sans-serif);
+  font-size: 1.35rem;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+  color: #f4f5f8;
+  margin: 0;
+  transition: color 0.2s ease;
+}
+
+.work-mission-card:hover .mission-title {
+  color: #ffaa00;
+}
+
+.mission-subtitle {
+  font-family: var(--font-mono, 'Share Tech Mono', monospace);
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  color: #ff1e27;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.mission-tagline {
+  font-family: var(--font-sans, 'Plus Jakarta Sans', sans-serif);
+  font-size: 0.86rem;
+  color: rgba(244, 245, 248, 0.72);
+  line-height: 1.45;
+  margin: 0;
+}
+
+/* Metrics Row */
+.mission-metrics-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(90px, 1fr));
+  gap: 8px;
+  margin-top: 4px;
+  padding: 8px 10px;
+  background: rgba(8, 6, 12, 0.6);
+  border: 1px solid rgba(255, 30, 39, 0.15);
+  border-radius: 4px;
+}
+
+.metric-badge {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.metric-val {
+  font-family: var(--font-mono, 'Share Tech Mono', monospace);
+  font-size: 0.84rem;
+  font-weight: 800;
+  color: #ffaa00;
+  letter-spacing: 0.04em;
+}
+
+.metric-lbl {
+  font-family: var(--font-mono, 'Share Tech Mono', monospace);
+  font-size: 0.58rem;
+  color: rgba(244, 245, 248, 0.55);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+/* Tags */
+.mission-tags-wrap {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 4px;
+}
+
+.mission-tag-pill {
+  font-family: var(--font-mono, 'Share Tech Mono', monospace);
+  font-size: 0.62rem;
+  letter-spacing: 0.06em;
+  color: rgba(244, 245, 248, 0.65);
+  background: rgba(22, 16, 30, 0.7);
+  border: 1px solid rgba(255, 170, 0, 0.15);
+  padding: 2px 7px;
+  border-radius: 3px;
+}
+
+/* Card Footer Actions */
+.mission-card-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 16px 14px;
+  border-top: 1px solid rgba(255, 30, 39, 0.14);
+  background: rgba(10, 8, 14, 0.5);
+}
+
+.mission-primary-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(255, 30, 39, 0.12);
+  border: 1px solid rgba(255, 30, 39, 0.35);
+  color: #f4f5f8;
+  padding: 6px 14px;
+  border-radius: 4px;
+  text-decoration: none;
+  font-family: var(--font-mono, 'Share Tech Mono', monospace);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  transition: all 0.2s ease;
+}
+
+.mission-primary-btn:hover {
+  background: #ff1e27;
+  border-color: #ff1e27;
+  color: #030305;
+  box-shadow: 0 0 16px rgba(255, 30, 39, 0.45);
+}
+
+.mission-external-links {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.mission-icon-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 4px;
+  background: rgba(14, 10, 18, 0.8);
+  border: 1px solid rgba(255, 30, 39, 0.25);
+  color: rgba(244, 245, 248, 0.7);
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.mission-icon-link:hover {
+  border-color: #ffaa00;
+  color: #ffaa00;
+  background: rgba(255, 170, 0, 0.1);
+  transform: translateY(-2px);
+}
+
+/* ==========================================================================
+   Stage 3: Dispatch Callout Banner
+   ========================================================================== */
+.work-dispatch-banner {
+  position: relative;
+  z-index: 3;
+  max-width: 1280px;
+  margin: 40px auto 0;
+  padding: 0 clamp(20px, 5vw, 64px);
+}
+
+.work-dispatch-card {
+  position: relative;
+  background: rgba(14, 10, 18, 0.92);
+  backdrop-filter: blur(14px);
+  border: 1px solid rgba(255, 30, 39, 0.35);
+  border-radius: 8px;
+  padding: clamp(28px, 4vw, 44px);
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  box-shadow: 0 18px 48px rgba(0, 0, 0, 0.8), 0 0 24px rgba(255, 30, 39, 0.15);
+}
+
+.dispatch-telemetry-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-mono, 'Share Tech Mono', monospace);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  color: #ffaa00;
+}
+
+.shield-icon {
+  color: #ff1e27;
+}
+
+.dispatch-title {
+  font-family: var(--font-display, 'Space Grotesk', sans-serif);
+  font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+  font-weight: 800;
+  color: #f4f5f8;
+  letter-spacing: -0.02em;
+  margin: 0;
+  text-transform: uppercase;
+}
+
+.dispatch-sub {
+  font-family: var(--font-sans, 'Plus Jakarta Sans', sans-serif);
+  font-size: clamp(0.95rem, 1.3vw, 1.08rem);
+  color: rgba(244, 245, 248, 0.78);
+  line-height: 1.6;
+  max-width: 780px;
+  margin: 0;
+}
+
+.dispatch-cta-row {
+  margin-top: 8px;
+}
+
+.dispatch-cta-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: #ff1e27;
+  border: 1px solid #ff1e27;
+  color: #030305;
+  padding: 12px 24px;
+  border-radius: 4px;
+  text-decoration: none;
+  font-family: var(--font-mono, 'Share Tech Mono', monospace);
+  font-size: 0.82rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 0 20px rgba(255, 30, 39, 0.4);
+}
+
+.dispatch-cta-btn:hover {
+  background: #ffaa00;
+  border-color: #ffaa00;
+  box-shadow: 0 0 28px rgba(255, 170, 0, 0.6);
+  transform: translateY(-2px);
+}
+
+/* ── Responsive Queries ───────────────────────────────────────── */
+@media (max-width: 1024px) {
+  .work-telemetry-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 640px) {
+  .work-hero-dossier {
+    padding: 85px 16px 24px;
+  }
+  .work-missions-section {
+    padding: 16px 16px 40px;
+  }
+  .work-dispatch-banner {
+    padding: 0 16px;
+  }
+  .work-telemetry-grid {
+    grid-template-columns: 1fr;
+  }
+  .work-filter-bar {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    padding-bottom: 10px;
+    gap: 8px;
+    scrollbar-width: none;
+  }
+  .work-filter-bar::-webkit-scrollbar {
+    display: none;
+  }
+  .work-filter-btn {
+    flex-shrink: 0;
+    padding: 6px 12px;
+    font-size: 0.7rem;
+  }
+  .mission-card-header {
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .work-grid {
+    grid-template-columns: 1fr;
+  }
+  .mission-card-footer {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+  }
+  .mission-external-links {
+    justify-content: flex-end;
+  }
+  .dispatch-telemetry-badge {
+    flex-wrap: wrap;
+    font-size: 0.65rem;
+    line-height: 1.4;
+  }
+  .dispatch-cta-btn {
+    width: 100%;
+    justify-content: center;
+    box-sizing: border-box;
+    text-align: center;
+  }
+}

@@ -1,35 +1,57 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback, useRef } from 'react';
+import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
 import Lenis from 'lenis';
 import 'lenis/dist/lenis.css';
-import Hero from './components/Hero';
-import About from './components/About';
-import Skills from './components/Skills';
-import EditorialBreather from './components/EditorialBreather';
-import Projects from './components/Projects';
-import Experience from './components/Experience';
-import EditorialCTA from './components/EditorialCTA';
-import Contact from './components/Contact';
-import Footer from './components/Footer';
-import CyberGridBackground from './components/CyberGridBackground';
+import Preloader from './components/Preloader';
+import MissionHUD from './components/MissionHUD';
+import ThreePlushEnvelope from './components/ThreePlushEnvelope';
+import InterstellarAudioPlayer from './components/InterstellarAudioPlayer';
+import CosmicStarfield from './components/CosmicStarfield';
+import ContactModal from './components/ContactModal';
+import HomePage from './pages/HomePage';
+import { playAirlockPneumatic } from './utils/audio';
 import { Check } from 'lucide-react';
 import './App.css';
-import './ModernEnhancements.css';
 
-function App() {
+// Code-split auxiliary pages for instant mobile First Contentful Paint
+const WorkPage = React.lazy(() => import('./pages/WorkPage'));
+const AboutPage = React.lazy(() => import('./pages/AboutPage'));
+const FaqPage = React.lazy(() => import('./pages/FaqPage'));
+const ContactPage = React.lazy(() => import('./pages/ContactPage'));
+const CaseStudyPage = React.lazy(() => import('./pages/CaseStudyPage'));
+const NotFoundPage = React.lazy(() => import('./pages/NotFoundPage'));
+
+function AppContent() {
+  const location = useLocation();
+  const lenisRef = useRef(null);
+
+  // Play the "NEED GPUS FOR WORLD DOMINATION" opening montage on every page load
+  const [loading, setLoading] = useState(true);
   const [toastMessage, setToastMessage] = useState('');
   const [toastVisible, setToastVisible] = useState(false);
+  const [contactModalOpen, setContactModalOpen] = useState(false);
+
+  const handleIntroComplete = useCallback(() => {
+    setLoading(false);
+  }, []);
 
   useEffect(() => {
     document.documentElement.setAttribute('data-theme', 'dark');
     document.body.setAttribute('data-theme', 'dark');
 
+    if ('scrollRestoration' in window.history) {
+      window.history.scrollRestoration = 'manual';
+    }
+
     // Initialize Lenis for luxurious, inertial smooth-flowing scrolling
     const lenis = new Lenis({
-      duration: 1.15,
+      duration: 1.35,
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
       smoothWheel: true,
-      touchMultiplier: 1.5,
+      wheelMultiplier: 0.72,
+      touchMultiplier: 0.9,
     });
+    lenisRef.current = lenis;
 
     let rafId;
     function raf(time) {
@@ -41,8 +63,19 @@ function App() {
     return () => {
       cancelAnimationFrame(rafId);
       lenis.destroy();
+      lenisRef.current = null;
     };
   }, []);
+
+  // Force scroll to top on every route change (resets both browser and Lenis internal state)
+  useEffect(() => {
+    window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+    document.documentElement.scrollTop = 0;
+    document.body.scrollTop = 0;
+    if (lenisRef.current) {
+      lenisRef.current.scrollTo(0, { immediate: true });
+    }
+  }, [location.pathname]);
 
   const showToast = (message) => {
     setToastMessage(message);
@@ -54,68 +87,52 @@ function App() {
 
   return (
     <div className="portfolio-app" data-theme="dark">
-      {/* Interactive 3D Cyber Perspective Grid */}
-      <CyberGridBackground theme="dark" />
+      {/* Global Unified Cosmic Starfield Canvas across all pages */}
+      <CosmicStarfield />
 
-      <main>
-        {/* Hero Section */}
-        <Hero showToast={showToast} />
+      {/* Authentic Sruthi Opening Sequence: "NEED GPUS FOR WORLD DOMINATION" */}
+      {loading && <Preloader onComplete={handleIntroComplete} />}
 
-        {/* 01 // Introduction */}
-        <About showToast={showToast} />
+      {/* Global Mission HUD: Persistent Telemetry, Orbit Coordinates, Audio & Navigation */}
+      <MissionHUD
+        onReplayIntro={() => setLoading(true)}
+      />
 
-        {/* Interstitial Breather 1: Giant Flowing Engineering Intelligence */}
-        <EditorialBreather 
-          statusBadge="CORE PHILOSOPHY"
-          line1="ENGINEERING"
-          line2="INTELLIGENCE."
-          ctaText="Explore Technical Arsenal"
-          targetId="#skills"
-          size="giant"
-          flowingTape={true}
-        />
+      {/* Official Hans Zimmer Interstellar Main Theme Player (from 0:20 on) */}
+      <InterstellarAudioPlayer />
 
-        {/* 02 // Technical Domain Matrix & Skills */}
-        <Skills />
+      {/* Multi-Page Routes */}
+      <React.Suspense fallback={<div className="page-route-fallback" />}>
+        <Routes>
+          <Route path="/" element={<HomePage showToast={showToast} />} />
+          <Route path="/work" element={<WorkPage showToast={showToast} />} />
+          <Route path="/work/:slug" element={<CaseStudyPage />} />
+          <Route path="/about" element={<AboutPage showToast={showToast} />} />
+          <Route path="/faq" element={<FaqPage />} />
+          <Route path="/contact" element={<ContactPage showToast={showToast} />} />
+          <Route path="*" element={<NotFoundPage />} />
+        </Routes>
+      </React.Suspense>
 
-        {/* Interstitial Breather 2: Skills to Production Systems */}
-        <EditorialBreather 
-          statusBadge="VALIDATED ARCHITECTURES"
-          line1="SHIPPED SYSTEMS."
-          line2="PROVEN AT SCALE."
-          ctaText="Explore Flagship Case Studies"
-          targetId="#projects"
-        />
+      {/* 3D Running/Hopping Plush Envelope in DOOM Praetor Argent Theme */}
+      <ThreePlushEnvelope
+        onClick={() => {
+          playAirlockPneumatic();
+          setContactModalOpen(true);
+        }}
+      />
 
-        {/* 03 // Featured Work */}
-        <Projects showToast={showToast} />
-
-        {/* Interstitial Breather 3: Projects to Career Journey */}
-        <EditorialBreather 
-          statusBadge="CAREER VELOCITY"
-          line1="CAREER VELOCITY."
-          line2="CONSTANT EVOLUTION."
-          ctaText="Inspect Career Journey"
-          targetId="#experience"
-        />
-
-        {/* 04 // Journey / Career Milestones */}
-        <Experience />
-
-        {/* Interstitial Breather 4: Giant Editorial CTA (HAVE AN IDEA? LET'S BUILD IT.) */}
-        <EditorialCTA onOpenContact={() => document.querySelector("#contact")?.scrollIntoView({ behavior: 'smooth' })} />
-
-        {/* 05 // Get in Touch / Contact */}
-        <Contact showToast={showToast} />
-      </main>
-
-      {/* Footer */}
-      <Footer />
+      {/* Global Interactive Dispatch Modal Popup */}
+      <ContactModal
+        isOpen={contactModalOpen}
+        onClose={() => setContactModalOpen(false)}
+        showToast={showToast}
+      />
 
       {/* Floating Toast Notification */}
       {toastVisible && (
         <div className="toast-notice" role="status" aria-live="polite">
-          <Check size={16} color="#3B82F6" />
+          <Check size={16} color="#ffaa00" />
           <span>{toastMessage}</span>
         </div>
       )}
@@ -123,4 +140,10 @@ function App() {
   );
 }
 
-export default App;
+export default function App() {
+  return (
+    <BrowserRouter>
+      <AppContent />
+    </BrowserRouter>
+  );
+}

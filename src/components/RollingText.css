@@ -1,0 +1,74 @@
+/* ==========================================================================
+   ROLLING TEXT — Staggered character-by-character hover roll
+   ========================================================================== */
+
+.roll-text-wrap {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35em;
+  line-height: 1.15;
+}
+
+.roll-bracket {
+  opacity: 0.55;
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.25s ease;
+}
+
+a:hover .roll-bracket:first-child,
+button:hover .roll-bracket:first-child {
+  transform: translateX(-2px);
+  opacity: 1;
+}
+
+a:hover .roll-bracket:last-child,
+button:hover .roll-bracket:last-child {
+  transform: translateX(2px);
+  opacity: 1;
+}
+
+.roll-text-mask {
+  position: relative;
+  display: inline-block;
+  overflow: hidden;
+  height: 1.18em;
+  line-height: 1.18em;
+  vertical-align: bottom;
+}
+
+.roll-line {
+  display: flex;
+}
+
+.roll-line-bottom {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.roll-char {
+  display: inline-block;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  transition-delay: calc(var(--i, 0) * 16ms);
+  will-change: transform;
+}
+
+.roll-line-top .roll-char {
+  transform: translateY(0%);
+}
+
+.roll-line-bottom .roll-char {
+  transform: translateY(110%);
+}
+
+a:hover .roll-line-top .roll-char,
+button:hover .roll-line-top .roll-char,
+.roll-text-wrap:hover .roll-line-top .roll-char {
+  transform: translateY(-110%);
+}
+
+a:hover .roll-line-bottom .roll-char,
+button:hover .roll-line-bottom .roll-char,
+.roll-text-wrap:hover .roll-line-bottom .roll-char {
+  transform: translateY(0%);
+}
+

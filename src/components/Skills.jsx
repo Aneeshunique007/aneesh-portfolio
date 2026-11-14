@@ -1,8 +1,16 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { ArrowUpRight, Zap } from 'lucide-react';
+import { playMechanicalClick } from '../utils/audio';
 
 export default function Skills() {
+  const navigate = useNavigate();
   const [activeTab, setActiveTab] = useState('genai');
+
+  const handleTabChange = (id) => {
+    playMechanicalClick();
+    setActiveTab(id);
+  };
 
   const categories = [
     { id: 'genai', label: 'Generative AI & LLMs' },
@@ -196,10 +204,15 @@ export default function Skills() {
       <div className="container">
         {/* Header */}
         <div className="skills-header">
-          <span className="section-tag">02 // TECHNICAL ARSENAL</span>
-          <h2 className="section-title">SPECIALIZED AI &amp; FULL-STACK TOOLING.</h2>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '12px' }}>
+            <span className="section-tag">02 // TECHNICAL ARSENAL</span>
+            <span style={{ fontFamily: 'var(--font-mono, monospace)', color: '#ffaa00', fontSize: '0.72rem', fontWeight: 700, letterSpacing: '0.12em', padding: '3px 8px', background: 'rgba(255, 170, 0, 0.12)', border: '1px solid rgba(255, 170, 0, 0.35)', borderRadius: '4px' }}>
+              CALIBRATED IN PRODUCTION
+            </span>
+          </div>
+          <h2 className="section-title">SPECIALIZED AI &amp; <span className="title-accent">PRODUCTION TOOLING.</span></h2>
           <p className="section-subtitle">
-            Every technology in my stack is validated by real production systems. Click any tool to inspect its flagship implementation.
+            Every technology in my stack is validated by real production systems. Inspect the verified benchmarks behind each tool.
           </p>
         </div>
 
@@ -209,7 +222,7 @@ export default function Skills() {
             <button
               key={tab.id}
               className={`skills-tab-btn ${activeTab === tab.id ? 'active' : ''}`}
-              onClick={() => setActiveTab(tab.id)}
+              onClick={() => handleTabChange(tab.id)}
             >
               {tab.label}
               {activeTab === tab.id && <span className="tab-indicator"></span>}
@@ -224,11 +237,12 @@ export default function Skills() {
               key={skill.name} 
               className="skill-tile glass-panel"
               onClick={() => {
-                document.querySelector("#projects")?.scrollIntoView({ behavior: 'smooth' });
+                playMechanicalClick();
+                navigate('/work');
               }}
               role="button"
               tabIndex={0}
-              title={`View ${skill.project} in Projects`}
+              title={`View ${skill.project} in Work`}
             >
               <div className="skill-tile-top">
                 <div className="skill-tile-tag-group">

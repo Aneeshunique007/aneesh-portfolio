@@ -1,0 +1,563 @@
+/* ==========================================================================
+   DOOM GALAXY PRAETOR TACTILE DISPATCH ENVELOPE
+   Argent Energy &bull; Praetor Neural Protocol &bull; Molten Wax Seal
+   ========================================================================== */
+
+.praetor-envelope-section {
+  position: relative;
+  z-index: 2;
+  padding: 60px 0 120px;
+  color: #f4f5f8;
+  overflow: hidden;
+}
+
+.praetor-envelope-section.is-compact {
+  padding: 0;
+  overflow: visible;
+}
+
+/* ── Quick Action Row ──────────────────────────────────────── */
+.praetor-quick-cta-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  flex-wrap: wrap;
+  padding: 0 20px;
+  margin-bottom: 24px;
+}
+
+.is-compact .praetor-quick-cta-row {
+  display: none !important;
+}
+
+.praetor-unseal-btn {
+  font-family: var(--font-mono, 'Share Tech Mono', monospace);
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  background: rgba(255, 30, 39, 0.12);
+  color: #ffaa00;
+  border: 1px solid rgba(255, 30, 39, 0.4);
+  border-radius: 4px;
+  padding: 8px 16px;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.praetor-unseal-btn:hover {
+  background: rgba(255, 30, 39, 0.25);
+  border-color: #ff1e27;
+  color: #ffffff;
+  box-shadow: 0 0 20px rgba(255, 30, 39, 0.4);
+}
+
+.praetor-copy-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-mono, 'Share Tech Mono', monospace);
+  font-size: 0.76rem;
+  font-weight: 600;
+  color: #f4f5f8;
+  background: rgba(255, 30, 39, 0.08);
+  border: 1px solid rgba(255, 30, 39, 0.3);
+  border-radius: 999px;
+  padding: 6px 14px;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.praetor-copy-pill:hover {
+  background: rgba(255, 30, 39, 0.18);
+  border-color: #ffaa00;
+  color: #ffaa00;
+}
+
+.praetor-copy-tag {
+  color: #ff1e27;
+  font-weight: 800;
+  font-size: 0.68rem;
+}
+
+/* ── Tactile Origami Envelope Stage ───────────────────────────────────── */
+.envelope-stage-container {
+  display: flex;
+  justify-content: center;
+  perspective: 1200px;
+  padding: 85px 16px 20px;
+  box-sizing: border-box;
+}
+
+.is-compact .envelope-stage-container {
+  padding: 75px 0 16px;
+  width: 100%;
+}
+
+@media (max-width: 600px) {
+  .envelope-stage-container,
+  .is-compact .envelope-stage-container {
+    padding: 70px 0 14px;
+  }
+}
+
+.origami-envelope {
+  position: relative;
+  width: 100%;
+  max-width: 680px;
+  min-height: 380px;
+  background: linear-gradient(145deg, #16050f 0%, #0d0208 60%, #050104 100%);
+  border: 1px solid rgba(255, 30, 39, 0.42);
+  border-radius: 8px;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.88), 0 0 35px rgba(255, 30, 39, 0.22);
+  cursor: pointer;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease;
+  overflow: visible;
+}
+
+.is-compact .origami-envelope {
+  max-width: 100%;
+  min-height: 360px;
+  background: linear-gradient(145deg, #16050f 0%, #0d0208 60%, #050104 100%);
+  border: 1px solid rgba(255, 30, 39, 0.38);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.9), 0 0 30px rgba(255, 30, 39, 0.2);
+}
+
+.origami-envelope:hover:not(.envelope-is-open) {
+  transform: translateY(-6px);
+  box-shadow: 0 28px 70px rgba(0, 0, 0, 0.92), 0 0 45px rgba(255, 30, 39, 0.35);
+  border-color: rgba(255, 170, 0, 0.6);
+}
+
+/* Top Flap with Molten Argent Gradient */
+.envelope-flap {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 125px;
+  background: linear-gradient(180deg, #ff1e27 0%, #9e0c15 65%, #4a0308 100%);
+  clip-path: polygon(0 0, 100% 0, 50% 100%);
+  transform-origin: top center;
+  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 10;
+}
+
+.is-compact .envelope-flap {
+  height: 115px;
+}
+
+.origami-envelope.envelope-is-open .envelope-flap {
+  transform: rotateX(180deg);
+  z-index: 1;
+}
+
+/* Molten Argent Wax Seal */
+.envelope-wax-seal {
+  position: absolute;
+  bottom: 8px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 66px;
+  height: 66px;
+  background: radial-gradient(circle at center, #ffaa00 0%, #ff1e27 55%, #7a060e 100%);
+  border-radius: 50%;
+  border: 2px solid #fffae0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 25px rgba(255, 30, 39, 0.8), 0 0 45px rgba(255, 170, 0, 0.4);
+  cursor: pointer;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  z-index: 12;
+  animation: waxSealPulse 3s ease-in-out infinite;
+}
+
+@keyframes waxSealPulse {
+  0%, 100% { box-shadow: 0 0 25px rgba(255, 30, 39, 0.8), 0 0 45px rgba(255, 170, 0, 0.4); }
+  50% { box-shadow: 0 0 35px rgba(255, 30, 39, 1), 0 0 65px rgba(255, 170, 0, 0.65); }
+}
+
+.envelope-wax-seal:hover {
+  transform: translateX(-50%) scale(1.12);
+}
+
+/* Upright wax seal when envelope is open */
+.origami-envelope.envelope-is-open .envelope-wax-seal {
+  transform: translateX(-50%) rotateX(180deg);
+}
+
+.origami-envelope.envelope-is-open .envelope-wax-seal:hover {
+  transform: translateX(-50%) rotateX(180deg) scale(1.12);
+}
+
+.wax-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.wax-initials {
+  font-family: var(--font-display, 'Space Grotesk', sans-serif);
+  font-size: 1.25rem;
+  font-weight: 900;
+  color: #ffffff;
+  line-height: 1;
+  text-shadow: 0 0 8px rgba(255, 255, 255, 0.9);
+}
+
+.wax-label {
+  font-family: var(--font-mono, 'Share Tech Mono', monospace);
+  font-size: 0.52rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  color: #fffae0;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.8);
+}
+
+/* Front Armor Pocket */
+.envelope-pocket {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 64%;
+  background: linear-gradient(135deg, rgba(28, 6, 18, 0.96) 0%, rgba(12, 3, 8, 0.98) 100%);
+  border-top: 1px solid rgba(255, 170, 0, 0.35);
+  border-radius: 0 0 8px 8px;
+  z-index: 6;
+  display: flex;
+  align-items: flex-end;
+  padding: 20px 24px;
+  box-sizing: border-box;
+  pointer-events: none;
+}
+
+.envelope-pocket-label {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  font-family: var(--font-mono, 'Share Tech Mono', monospace);
+  font-size: 0.68rem;
+  letter-spacing: 0.12em;
+  color: rgba(244, 245, 248, 0.85);
+}
+
+.envelope-prompt-tap {
+  color: #ffaa00;
+  font-weight: 800;
+  animation: promptBlink 1.8s ease-in-out infinite;
+}
+
+@keyframes promptBlink {
+  0%, 100% { opacity: 0.6; }
+  50% { opacity: 1; }
+}
+
+/* ── Mission Dispatch Letter Inside ───────────────────────────────────── */
+.envelope-letter {
+  position: relative;
+  background: #09030a;
+  color: #f4f5f8;
+  border: 1px solid rgba(255, 30, 39, 0.5);
+  border-radius: 6px;
+  margin: 16px;
+  padding: 24px;
+  z-index: 4;
+  transform: translateY(0);
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), z-index 0.3s;
+  pointer-events: auto;
+}
+
+/* Sealed vs Open Letter Styling */
+.origami-envelope:not(.envelope-is-open) .envelope-letter {
+  transform: translateY(50px);
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease, visibility 0.3s;
+}
+
+.origami-envelope.envelope-is-open .envelope-letter {
+  transform: translateY(-65px);
+  z-index: 15;
+  box-shadow: 0 24px 70px rgba(0, 0, 0, 0.95), 0 0 35px rgba(255, 30, 39, 0.3);
+  opacity: 1;
+  visibility: visible;
+  filter: none;
+  pointer-events: auto;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.4s ease;
+}
+
+.is-compact .origami-envelope.envelope-is-open .envelope-letter {
+  transform: translateY(-50px);
+}
+
+.letter-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 8px;
+  border-bottom: 1px solid rgba(255, 30, 39, 0.25);
+  padding-bottom: 12px;
+  margin-bottom: 14px;
+}
+
+.letter-postage-stamp {
+  border: 1.5px dashed #ffaa00;
+  padding: 4px 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transform: rotate(-3deg);
+  background: #180512;
+}
+
+.letter-postage-stamp span {
+  font-family: var(--font-mono, 'Share Tech Mono', monospace);
+  font-weight: 800;
+  font-size: 0.72rem;
+  color: #ff1e27;
+  letter-spacing: 0.1em;
+}
+
+.letter-postage-stamp small {
+  font-family: var(--font-mono, 'Share Tech Mono', monospace);
+  font-size: 0.55rem;
+  color: #ffaa00;
+}
+
+.letter-greeting {
+  display: flex;
+  flex-direction: column;
+}
+
+.letter-to {
+  font-family: var(--font-display, 'Space Grotesk', sans-serif);
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: #f4f5f8;
+  letter-spacing: 0.04em;
+}
+
+.letter-role {
+  font-family: var(--font-mono, 'Share Tech Mono', monospace);
+  font-size: 0.64rem;
+  color: #ffaa00;
+  letter-spacing: 0.08em;
+}
+
+.letter-close-btn {
+  background: rgba(255, 30, 39, 0.15);
+  border: 1px solid rgba(255, 30, 39, 0.4);
+  color: #f4f5f8;
+  font-size: 0.8rem;
+  width: 26px;
+  height: 26px;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.letter-close-btn:hover {
+  background: #ff1e27;
+  color: #040407;
+}
+
+.letter-body {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.letter-intro {
+  font-family: var(--font-sans, sans-serif);
+  font-size: 0.78rem;
+  line-height: 1.45;
+  color: rgba(244, 245, 248, 0.75);
+  margin: 0;
+}
+
+.letter-email-chip {
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  background: rgba(255, 30, 39, 0.09);
+  border: 1px solid rgba(255, 30, 39, 0.35);
+  border-radius: 4px;
+  padding: 8px 12px;
+}
+
+.chip-address {
+  font-family: var(--font-mono, 'Share Tech Mono', monospace);
+  font-size: 0.76rem;
+  color: #f4f5f8;
+}
+
+.chip-copy-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(255, 170, 0, 0.18);
+  border: 1px solid #ffaa00;
+  color: #ffaa00;
+  border-radius: 3px;
+  padding: 4px 8px;
+  font-family: var(--font-mono, 'Share Tech Mono', monospace);
+  font-size: 0.65rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.chip-copy-btn:hover {
+  background: #ffaa00;
+  color: #040407;
+}
+
+/* Dispatch Form */
+.letter-quick-form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.form-row-duo {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+
+@media (max-width: 580px) {
+  .form-row-duo {
+    grid-template-columns: 1fr;
+  }
+}
+
+.letter-quick-form input,
+.letter-quick-form textarea {
+  width: 100%;
+  background: #0d030b;
+  border: 1px solid rgba(255, 30, 39, 0.32);
+  border-radius: 4px;
+  padding: 8px 12px;
+  color: #f4f5f8;
+  font-family: var(--font-sans, sans-serif);
+  font-size: 0.78rem;
+  box-sizing: border-box;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.letter-quick-form input:focus,
+.letter-quick-form textarea:focus {
+  outline: none;
+  border-color: #ffaa00;
+  box-shadow: 0 0 14px rgba(255, 170, 0, 0.28);
+}
+
+.letter-form-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.letter-send-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: linear-gradient(135deg, #ff1e27 0%, #ff7b00 100%);
+  color: #040407;
+  font-family: var(--font-mono, 'Share Tech Mono', monospace);
+  font-size: 0.74rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  border: none;
+  border-radius: 4px;
+  padding: 9px 18px;
+  cursor: pointer;
+  box-shadow: 0 0 20px rgba(255, 30, 39, 0.45);
+  transition: all 0.25s ease;
+}
+
+.letter-send-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 0 30px rgba(255, 30, 39, 0.7), 0 0 45px rgba(255, 170, 0, 0.4);
+}
+
+.letter-social-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.letter-social-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  background: rgba(255, 30, 39, 0.1);
+  border: 1px solid rgba(255, 30, 39, 0.3);
+  border-radius: 4px;
+  color: #f4f5f8;
+  transition: all 0.2s ease;
+}
+
+.letter-social-icon:hover {
+  background: #ff1e27;
+  color: #040407;
+  border-color: #ff1e27;
+}
+
+.letter-postscript {
+  border-top: 1px solid rgba(255, 30, 39, 0.2);
+  padding-top: 8px;
+  margin-top: 2px;
+}
+
+.ps-handwritten {
+  font-family: var(--font-mono, 'Share Tech Mono', monospace);
+  font-size: 0.6rem;
+  color: #ffaa00;
+  letter-spacing: 0.12em;
+}
+
+@media (max-width: 480px) {
+  .envelope-stage-container {
+    padding: 130px 10px 20px;
+  }
+
+  .envelope-letter {
+    margin: 8px;
+    padding: 16px;
+  }
+
+  .letter-form-footer {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+  }
+
+  .letter-send-btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .letter-social-row {
+    justify-content: center;
+    gap: 12px;
+  }
+
+  .letter-social-icon {
+    width: 36px;
+    height: 36px;
+  }
+}

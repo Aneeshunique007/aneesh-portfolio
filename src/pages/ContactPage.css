@@ -1,0 +1,297 @@
+/* ==========================================================================
+   CONTACT PAGE — DOOM PRAETOR ARGENT THEME
+   - Transparent background revealing global CosmicStarfield dots & embers
+   - Obsidian Void (#030305), Molten Red (#ff1e27), Crucible Gold (#ffaa00)
+   - Space Grotesk H1, Share Tech Mono telemetry, Plus Jakarta Sans body
+   ========================================================================== */
+
+.contact-praetor-page {
+  position: relative;
+  background: transparent;
+  color: #f4f5f8;
+  min-height: 100vh;
+  padding-top: clamp(80px, 10vh, 110px);
+  overflow-x: clip;
+}
+
+/* ── STAGE 1: Mission Command Uplink Header ───────────────────────── */
+.contact-hero-dossier {
+  position: relative;
+  z-index: 3;
+  padding: clamp(20px, 4vh, 40px) clamp(20px, 5vw, 64px) clamp(30px, 5vh, 50px);
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.contact-dossier-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.contact-status-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(14, 10, 18, 0.88);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 30, 39, 0.35);
+  padding: 5px 14px;
+  border-radius: 999px;
+  width: fit-content;
+  max-width: 100%;
+  box-sizing: border-box;
+  font-family: var(--font-mono, 'Share Tech Mono', monospace);
+  font-size: clamp(0.62rem, 2.5vw, 0.72rem);
+  letter-spacing: 0.14em;
+  color: #ffaa00;
+  font-weight: 700;
+}
+
+.contact-status-pill .status-orb-argent {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #ff1e27;
+  box-shadow: 0 0 10px #ff1e27, 0 0 20px rgba(255, 30, 39, 0.6);
+  animation: contactOrbPulse 2s ease-in-out infinite;
+}
+
+@keyframes contactOrbPulse {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.35);
+    opacity: 0.7;
+  }
+}
+
+.contact-page-title {
+  font-family: var(--font-display, 'Space Grotesk', sans-serif);
+  font-size: clamp(2.4rem, 5.2vw, 4.4rem);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  color: #f4f5f8;
+  line-height: 0.96;
+  margin: 0;
+  text-transform: uppercase;
+}
+
+.contact-page-subtitle {
+  font-family: var(--font-mono, 'Share Tech Mono', monospace);
+  font-size: clamp(0.78rem, 1.3vw, 0.92rem);
+  letter-spacing: 0.14em;
+  color: #ffaa00;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.contact-bio-lead {
+  font-family: var(--font-sans, sans-serif);
+  font-size: clamp(0.96rem, 1.4vw, 1.15rem);
+  font-weight: 400;
+  color: rgba(244, 245, 248, 0.85);
+  line-height: 1.6;
+  max-width: 860px;
+  margin: 0;
+}
+
+/* ── Telemetry 4-Card Grid ────────────────────────────────────────── */
+.contact-telemetry-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+  margin-top: 10px;
+}
+
+@media (max-width: 900px) {
+  .contact-telemetry-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 520px) {
+  .contact-telemetry-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.contact-telemetry-card {
+  background: rgba(14, 10, 18, 0.75);
+  border: 1px solid rgba(255, 30, 39, 0.22);
+  padding: 14px 16px;
+  border-radius: 6px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  backdrop-filter: blur(8px);
+  transition: border-color 0.25s, transform 0.25s, box-shadow 0.25s;
+}
+
+.contact-telemetry-card:hover {
+  border-color: rgba(255, 30, 39, 0.55);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(255, 30, 39, 0.15);
+}
+
+.card-top-icon {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #ff1e27;
+}
+
+.telemetry-card-tag {
+  font-family: var(--font-mono, 'Share Tech Mono', monospace);
+  font-size: 0.65rem;
+  color: #ff1e27;
+  letter-spacing: 0.14em;
+  font-weight: 700;
+}
+
+.telemetry-card-val {
+  font-family: var(--font-display, 'Space Grotesk', sans-serif);
+  font-size: clamp(0.95rem, 1.25vw, 1.1rem);
+  font-weight: 700;
+  color: #f4f5f8;
+  letter-spacing: -0.01em;
+}
+
+.telemetry-card-val.email-val {
+  font-size: clamp(0.82rem, 1.1vw, 0.92rem);
+  font-family: var(--font-mono, 'Share Tech Mono', monospace);
+  word-break: break-all;
+  color: #ffaa00;
+}
+
+.telemetry-card-sub {
+  font-family: var(--font-mono, 'Share Tech Mono', monospace);
+  font-size: 0.62rem;
+  color: rgba(244, 245, 248, 0.55);
+  letter-spacing: 0.08em;
+}
+
+/* ── Social Channels Relay Strip ──────────────────────────────────── */
+.contact-channels-strip {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-top: 6px;
+  padding-top: 14px;
+  border-top: 1px solid rgba(255, 30, 39, 0.15);
+}
+
+.channels-label {
+  font-family: var(--font-mono, 'Share Tech Mono', monospace);
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: #ffaa00;
+  letter-spacing: 0.12em;
+}
+
+.channels-pill-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.chan-link-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(20, 14, 24, 0.8);
+  border: 1px solid rgba(255, 30, 39, 0.28);
+  border-radius: 4px;
+  padding: 6px 14px;
+  color: #f4f5f8;
+  text-decoration: none;
+  font-family: var(--font-mono, 'Share Tech Mono', monospace);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  transition: all 0.22s ease;
+}
+
+.chan-link-pill:hover {
+  background: rgba(255, 30, 39, 0.2);
+  border-color: #ff1e27;
+  color: #ffffff;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 16px rgba(255, 30, 39, 0.3);
+}
+
+/* ── STAGE 2: Interactive Tactile DOOM Praetor Envelope ───────────── */
+.contact-interactive-section {
+  position: relative;
+  z-index: 3;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 10px clamp(20px, 5vw, 64px) 60px;
+}
+
+.section-label-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 28px;
+  text-align: center;
+}
+
+.section-dot-red {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #ff1e27;
+  box-shadow: 0 0 10px #ff1e27;
+}
+
+.section-label-text {
+  font-family: var(--font-mono, 'Share Tech Mono', monospace);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  color: #ffaa00;
+  text-transform: uppercase;
+  text-align: center;
+}
+
+/* ── Bottom Telemetry Footer Strip ────────────────────────────────── */
+.contact-bottom-strip {
+  position: relative;
+  z-index: 3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  flex-wrap: wrap;
+  padding: 24px 20px 48px;
+  border-top: 1px solid rgba(255, 30, 39, 0.15);
+  font-family: var(--font-mono, 'Share Tech Mono', monospace);
+  font-size: 0.7rem;
+  letter-spacing: 0.14em;
+  color: rgba(244, 245, 248, 0.45);
+  text-align: center;
+}
+
+.strip-dot {
+  color: #ff1e27;
+}
+
+@media (max-width: 600px) {
+  .contact-hero-dossier {
+    padding: 85px 16px 24px;
+  }
+  .contact-interactive-section {
+    padding: 10px 16px 40px;
+  }
+  .chan-link-pill {
+    flex: 1 1 130px;
+    justify-content: center;
+  }
+}

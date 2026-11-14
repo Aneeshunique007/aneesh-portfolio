@@ -1,0 +1,241 @@
+/* ==========================================================================
+   OPENING SEQUENCE — Full-Bleed Strobe ("NEED GPUS FOR WORLD DOMINATION")
+   + Horizontal Shutter Slit Reveal
+   ========================================================================== */
+
+.domination-preloader {
+  position: fixed;
+  inset: 0;
+  z-index: 99999;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  pointer-events: auto;
+}
+
+.domination-preloader.is-slit-opening {
+  background: transparent;
+  pointer-events: none;
+}
+
+.strobe-preload-cache {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  opacity: 0;
+  pointer-events: none;
+  z-index: -1;
+}
+
+.strobe-canvas {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  background-color: #050505;
+  color: #ff1e27;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+/* Inverted frame (Black giant 'FOR' on full-width crimson red bar) */
+.strobe-canvas.strobe-invert {
+  background-color: #050505;
+}
+
+.strobe-canvas.strobe-invert::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 12%;
+  bottom: 12%;
+  background-color: #ff1e27;
+  z-index: 1;
+}
+
+.strobe-canvas.strobe-invert .strobe-giant-word {
+  color: #050505;
+  z-index: 2;
+}
+
+/* Slit-close phase (horizontal slit narrows across center) */
+.strobe-canvas.strobe-slit-closing::before,
+.strobe-canvas.strobe-slit-closing::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  background: #050505;
+  z-index: 5;
+  animation: shutterCloseBar 0.34s cubic-bezier(0.7, 0, 0.3, 1) forwards;
+}
+
+.strobe-canvas.strobe-slit-closing::before {
+  top: 0;
+}
+
+.strobe-canvas.strobe-slit-closing::after {
+  bottom: 0;
+}
+
+@keyframes shutterCloseBar {
+  0% {
+    height: 18%;
+  }
+  65% {
+    height: 47.5%;
+  }
+  100% {
+    height: 50.5%;
+  }
+}
+
+/* Slit-open phase (top & bottom black bars part from center to reveal homepage) */
+.shutter-bar {
+  position: fixed;
+  left: 0;
+  right: 0;
+  height: 50.5vh;
+  background: #050505;
+  z-index: 99999;
+  animation: shutterOpenBar 0.42s cubic-bezier(0.77, 0, 0.175, 1) forwards;
+}
+
+.shutter-bar.shutter-top {
+  top: 0;
+  transform-origin: top center;
+}
+
+.shutter-bar.shutter-bottom {
+  bottom: 0;
+  transform-origin: bottom center;
+}
+
+@keyframes shutterOpenBar {
+  0% {
+    height: 50.5vh;
+  }
+  40% {
+    height: 24vh;
+  }
+  100% {
+    height: 0vh;
+  }
+}
+
+/* Giant Full-Screen Ultra-Condensed Red Words (NEED / GPUS / FOR / WORLD / DOMINATION) */
+.strobe-giant-word {
+  font-family: 'Anton', Impact, 'Arial Narrow', sans-serif;
+  font-weight: 400;
+  text-transform: uppercase;
+  color: #ff1e27;
+  line-height: 0.82;
+  letter-spacing: -0.025em;
+  margin: 0;
+  padding: 0;
+  white-space: nowrap;
+  user-select: none;
+  text-align: center;
+  width: 100vw;
+  max-width: 96vw;
+  transform: scaleY(1.18);
+}
+
+.strobe-giant-word.word-short {
+  font-size: clamp(5.5rem, 24vw, 32rem);
+}
+
+.strobe-giant-word.word-medium {
+  font-size: clamp(4.2rem, 19vw, 25rem);
+}
+
+.strobe-giant-word.word-long {
+  font-size: clamp(2.8rem, 10.8vw, 15rem);
+}
+
+/* Full-Bleed 100vw x 100vh GPU Supercluster + World Domination HUD + Anime Montage Images */
+.strobe-fullbleed-img-wrap {
+  position: absolute;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  background: #050505;
+}
+
+.strobe-fullbleed-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: contrast(1.18) brightness(0.96);
+  transform: scale(1.02);
+}
+
+.strobe-fullbleed-img-wrap::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    circle at center,
+    transparent 35%,
+    rgba(5, 5, 5, 0.45) 75%,
+    rgba(5, 5, 5, 0.85) 100%
+  );
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Subtle tactical engineering telemetry watermark on image cuts */
+.strobe-telemetry-tag {
+  position: absolute;
+  top: 24px;
+  left: 28px;
+  z-index: 3;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-mono, 'JetBrains Mono', monospace);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  color: #ff1e27;
+  text-shadow: 0 0 10px rgba(255, 30, 39, 0.8);
+  pointer-events: none;
+}
+
+.strobe-telemetry-tag .strobe-blip {
+  color: #ff1e27;
+  animation: telemetryBlink 0.3s steps(2, start) infinite;
+}
+
+@keyframes telemetryBlink {
+  to {
+    visibility: hidden;
+  }
+}
+
+/* Bottom-right subtle red mono prompt */
+.domination-skip-btn {
+  position: absolute;
+  bottom: 14px;
+  right: 18px;
+  z-index: 12;
+  background: transparent;
+  border: none;
+  color: #ffaa00;
+  font-family: var(--font-mono, 'JetBrains Mono', monospace);
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  cursor: pointer;
+  opacity: 0.88;
+  transition: opacity 0.2s ease;
+}
+
+.domination-skip-btn:hover {
+  opacity: 1;
+  text-decoration: underline;
+}

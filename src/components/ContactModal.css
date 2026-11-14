@@ -1,0 +1,208 @@
+/* ==========================================================================
+   CONTACT MODAL — DOOM PRAETOR ARGENT MODAL POPUP
+   ========================================================================== */
+
+.contact-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(3, 3, 5, 0.88);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  z-index: 99999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(10px, 2.5vh, 24px) clamp(10px, 3vw, 20px);
+  box-sizing: border-box;
+  animation: modalFadeIn 0.25s ease-out forwards;
+}
+
+@keyframes modalFadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.contact-modal-dialog {
+  position: relative;
+  width: 100%;
+  max-width: 660px;
+  max-height: calc(100dvh - 24px);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  background: linear-gradient(160deg, #12030b 0%, #070104 100%);
+  border: 1px solid rgba(255, 30, 39, 0.55);
+  border-radius: 10px;
+  box-shadow: 0 30px 90px rgba(0, 0, 0, 0.95), 0 0 45px rgba(255, 30, 39, 0.35);
+  animation: modalScaleUp 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  box-sizing: border-box;
+}
+
+@keyframes modalScaleUp {
+  from {
+    opacity: 0;
+    transform: scale(0.92) translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+/* Modal Header Bar */
+.contact-modal-header {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 18px;
+  background: rgba(22, 6, 14, 0.96);
+  border-bottom: 1px solid rgba(255, 30, 39, 0.28);
+  position: sticky;
+  top: 0;
+  z-index: 20;
+}
+
+.contact-modal-badge {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.contact-modal-orb {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #ff1e27;
+  box-shadow: 0 0 10px #ff1e27, 0 0 20px rgba(255, 30, 39, 0.6);
+  animation: modalOrbGlow 2s infinite ease-in-out;
+}
+
+@keyframes modalOrbGlow {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.3);
+    opacity: 0.7;
+  }
+}
+
+.contact-modal-title {
+  font-family: var(--font-mono, 'Share Tech Mono', monospace);
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+  color: #ffaa00;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.contact-modal-close-btn {
+  background: transparent;
+  border: 1px solid rgba(255, 30, 39, 0.3);
+  border-radius: 4px;
+  padding: 4px 10px;
+  color: #f4f5f8;
+  font-family: var(--font-mono, 'Share Tech Mono', monospace);
+  font-size: 0.7rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.contact-modal-close-btn:hover {
+  background: rgba(255, 30, 39, 0.25);
+  border-color: #ff1e27;
+  color: #ffaa00;
+  box-shadow: 0 0 14px rgba(255, 30, 39, 0.4);
+}
+
+/* Modal Body */
+.contact-modal-body {
+  flex: 1;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  padding: 16px 18px 24px;
+}
+
+/* Modal adjustments for the envelope */
+.is-modal-envelope {
+  padding: 0 !important;
+  overflow: visible !important;
+}
+
+.is-modal-envelope .praetor-quick-cta-row {
+  display: none !important;
+}
+
+.is-modal-envelope .envelope-stage-container {
+  padding: 0 !important;
+  perspective: none !important;
+}
+
+.is-modal-envelope .origami-envelope {
+  max-width: 100% !important;
+  min-height: auto !important;
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  cursor: default !important;
+  transform: none !important;
+}
+
+.is-modal-envelope .envelope-flap,
+.is-modal-envelope .envelope-pocket {
+  display: none !important;
+}
+
+.is-modal-envelope .envelope-letter {
+  transform: none !important;
+  margin: 0 !important;
+  padding: 20px 22px !important;
+  width: 100% !important;
+  box-sizing: border-box !important;
+  background: rgba(14, 4, 12, 0.92) !important;
+  border: 1px solid rgba(255, 30, 39, 0.45) !important;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7), 0 0 20px rgba(255, 30, 39, 0.15) !important;
+}
+
+@media (max-width: 520px) {
+  .contact-modal-backdrop {
+    padding: 6px;
+  }
+
+  .contact-modal-dialog {
+    max-height: calc(100dvh - 12px);
+  }
+
+  .contact-modal-header {
+    padding: 10px 12px;
+    gap: 8px;
+  }
+
+  .contact-modal-title {
+    font-size: 0.62rem;
+    letter-spacing: 0.08em;
+  }
+
+  .contact-modal-close-btn {
+    padding: 4px 6px;
+    font-size: 0.65rem;
+    white-space: nowrap;
+  }
+
+  .contact-modal-body {
+    padding: 10px 8px 18px;
+  }
+
+  .is-modal-envelope .envelope-letter {
+    padding: 14px 12px 18px !important;
+  }
+}
