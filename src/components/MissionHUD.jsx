@@ -91,6 +91,14 @@ export default function MissionHUD({ onReplayIntro }) {
       return;
     }
 
+    if (item.id === 'hero') {
+      if (location.pathname !== '/' || location.search) {
+        navigate('/');
+      }
+      window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
+      return;
+    }
+
     if (location.pathname !== '/') {
       navigate(`/?section=${item.id}`);
       return;
@@ -135,7 +143,6 @@ export default function MissionHUD({ onReplayIntro }) {
           >
             <span className="hud-blip-gold" />
             <span className="hud-callsign">ANEESH U S</span>
-            <span className="hud-mission-code">AI ARCHITECT</span>
           </button>
         </div>
 

@@ -34,12 +34,16 @@ export default function Preloader({ onComplete }) {
 
   // Preload all 5 montage images immediately so 190ms strobe flashes never flicker or miss a frame
   useEffect(() => {
+    if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      if (onComplete) onComplete();
+      return;
+    }
     INTRO_IMAGES.forEach((src) => {
       const img = new Image();
       img.decoding = 'sync';
       img.src = src;
     });
-  }, []);
+  }, [onComplete]);
 
   const skipIntro = () => {
     if (onComplete) onComplete();

@@ -97,8 +97,9 @@
 .hud-nav-dock {
   display: none;
   align-items: center;
-  gap: 6px;
+  gap: 8px;
   flex-shrink: 0;
+  margin: 0 auto;
 }
 
 @media (min-width: 960px) {
@@ -143,7 +144,6 @@
   align-items: center;
   gap: 8px;
   flex-shrink: 0;
-  margin-left: auto;
   white-space: nowrap;
 }
 

@@ -10,7 +10,7 @@ const COL_MIDDLE_QUESTIONS = [
   {
     num: '02',
     q: 'HOW LONG HAVE YOU BEEN IN THE SHOW BIZ?',
-    a: "3+ years shipping production AI systems across enterprise production environments (and breaking GPUs long before that). i've architected everything from 15-second Japanese MLIT document parsers to 100-equity deep learning engines.",
+    a: "4+ years shipping production AI systems across enterprise production environments (and breaking GPUs long before that). i've architected everything from 15-second Japanese MLIT document parsers to 100-equity deep learning engines.",
   },
   {
     num: '03',

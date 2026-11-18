@@ -117,7 +117,7 @@ export default function InterstellarAudioPlayer({ onTrackChange }) {
     <audio
       ref={audioRef}
       src="/audio/interstellar-theme.mp3"
-      preload="auto"
+      preload="none"
       loop
       onPlay={() => {
         isPlayingRef.current = true;

@@ -175,7 +175,7 @@ export const PROJECTS = [
     clientOrg: "Faith InfoTech Academy",
     image: "/project-faithai.png",
     tags: ["TinyLlama-1.1B", "Meta FAISS", "Scrapy", "Django 5", "React 19"],
-    demo: "https://github.com/Aneeshunique007",
+    demo: null,
     github: "https://github.com/Aneeshunique007",
     metrics: [
       { value: "< 1.8s", label: "CPU Inference", detail: "TinyLlama-1.1B 4-thread CPU optimization" },
@@ -213,7 +213,7 @@ export const PROJECTS = [
     clientOrg: "Healthcare Management Systems",
     image: "/project-cms.png",
     tags: ["Django 5", "React 19", "MySQL", "ReportLab 4.4", "Hugging Face AI"],
-    demo: "https://github.com/Aneeshunique007",
+    demo: null,
     github: "https://github.com/Aneeshunique007",
     metrics: [
       { value: "31k+", label: "Lines of Code", detail: "Battle-tested clinical architecture" },
@@ -251,7 +251,7 @@ export const PROJECTS = [
     clientOrg: "Independent Educational Platform",
     image: "/project-anilearn.jpg",
     tags: ["React 18", "TypeScript", "Node.js", "MongoDB", "Web Speech API"],
-    demo: "https://github.com/Aneeshunique007",
+    demo: null,
     github: "https://github.com/Aneeshunique007",
     metrics: [
       { value: "3,000+", label: "Interactive Drills", detail: "Context-rich sentence exercises" },

@@ -4,16 +4,16 @@ import Lenis from 'lenis';
 import 'lenis/dist/lenis.css';
 import Preloader from './components/Preloader';
 import MissionHUD from './components/MissionHUD';
-import ThreePlushEnvelope from './components/ThreePlushEnvelope';
 import InterstellarAudioPlayer from './components/InterstellarAudioPlayer';
 import CosmicStarfield from './components/CosmicStarfield';
-import ContactModal from './components/ContactModal';
 import HomePage from './pages/HomePage';
 import { playAirlockPneumatic } from './utils/audio';
 import { Check } from 'lucide-react';
 import './App.css';
 
-// Code-split auxiliary pages for instant mobile First Contentful Paint
+// Code-split heavy 3D WebGL components & auxiliary pages for instant First Contentful Paint
+const ThreePlushEnvelope = React.lazy(() => import('./components/ThreePlushEnvelope'));
+const ContactModal = React.lazy(() => import('./components/ContactModal'));
 const WorkPage = React.lazy(() => import('./pages/WorkPage'));
 const AboutPage = React.lazy(() => import('./pages/AboutPage'));
 const FaqPage = React.lazy(() => import('./pages/FaqPage'));
@@ -115,19 +115,25 @@ function AppContent() {
       </React.Suspense>
 
       {/* 3D Running/Hopping Plush Envelope in DOOM Praetor Argent Theme */}
-      <ThreePlushEnvelope
-        onClick={() => {
-          playAirlockPneumatic();
-          setContactModalOpen(true);
-        }}
-      />
+      <React.Suspense fallback={null}>
+        <ThreePlushEnvelope
+          onClick={() => {
+            playAirlockPneumatic();
+            setContactModalOpen(true);
+          }}
+        />
+      </React.Suspense>
 
       {/* Global Interactive Dispatch Modal Popup */}
-      <ContactModal
-        isOpen={contactModalOpen}
-        onClose={() => setContactModalOpen(false)}
-        showToast={showToast}
-      />
+      {contactModalOpen && (
+        <React.Suspense fallback={null}>
+          <ContactModal
+            isOpen={contactModalOpen}
+            onClose={() => setContactModalOpen(false)}
+            showToast={showToast}
+          />
+        </React.Suspense>
+      )}
 
       {/* Floating Toast Notification */}
       {toastVisible && (
