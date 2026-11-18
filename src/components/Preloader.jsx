@@ -128,10 +128,6 @@ export default function Preloader({ onComplete }) {
           {current.type === 'image' && (
             <div className="strobe-fullbleed-img-wrap">
               <img src={current.src} alt="" className="strobe-fullbleed-img" />
-              <div className="strobe-telemetry-tag" aria-hidden="true">
-                <span className="strobe-blip">●</span>
-                <span>{current.label || 'COMPUTE_RIG // 48GB FP16 HIGH-DENSITY CLUSTER'}</span>
-              </div>
             </div>
           )}
 
